@@ -1,0 +1,232 @@
+html {
+    overflow: hidden;
+}
+
+.body {
+    min-height: calc(100vh - 61px);  
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url("../Images/Backgrounds/Website.jpeg"); */
+    background-image: url("../Images/Gallery/gggame-гггейм.gif");
+    background-size: cover;
+    box-sizing: border-box;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 61px;
+}
+
+.cards-container1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+    width: 380px;
+    height: 380px;
+    perspective: 1000px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-front1,
+.card-front2,
+.card-front3,
+.card-front4,
+.card-front5,
+.card-front6,
+.card-front7,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    border: 3px solid white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card-front {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Бесконечная Террария.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-front1 {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Йо-йошник.webp");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-front2 {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Микро Террария.webp");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-front3 {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Супер микро Террария.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-front4 {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Террария на острове посреди океана.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-front5 {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Террария на планетах.webp");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-front6 {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Обзоровая карта.webp");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-front7 {
+    background: white;
+    color: #333;
+    background-image: url("../images/Worlds cards/Самое первое прохождение Террарии.png");
+    background-position: center;
+    background-size: cover;
+}
+
+.card-back {
+    background: rgba(0, 171, 74);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.card-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+    width: 100px;
+    height: 70px;
+}
+
+.card-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 14px;
+    line-height: 1.4;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.card-back .card-description {
+    margin-bottom: 15px;
+}
+
+.btn {
+    background: white;
+    color: rgba(0, 171, 74);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card:nth-child(2) .card-back {
+    background: rgba(0, 171, 74);
+}
+
+.card:nth-child(2) .btn {
+    color: rgba(0, 171, 74);
+}
+
+.card:nth-child(3) .card-back {
+    background: rgba(0, 171, 74);
+}
+
+.card:nth-child(3) .btn {
+    color: rgba(0, 171, 74);
+}
+
+@media (min-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr 2fr;
+    }    
+}
+
+
+@media (min-width: 992px) {
+    .cards-container {
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+}
+
+/* Описываем саму анимацию */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Полностью прозрачный */
+    transform: translateY(100px); /* Слегка смещен вниз для эффекта "всплытия" */
+  }
+  to {
+    opacity: 1; /* Полностью видимый */
+    transform: translateY(0); /* Возвращается в исходную точку */
+  }
+}
+
+/* Применяем анимацию к контейнеру */
+.cards-container {
+  animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+}

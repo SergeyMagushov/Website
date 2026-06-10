@@ -1,0 +1,218 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    /* Запрет появления элемента прокрутки страницы */
+    color: white;
+}
+
+.sliders-container {
+    min-height: calc(100vh - 61px); 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    /* background-image: url("../Images/Backgrounds/Capture 2026-01-19 16_04_35.png"); */
+    background-image: url("../Images/Gallery/gggame-гггейм.gif");
+    background-size: cover;
+}
+
+.slider1,
+.slider2,
+.slider3,
+.slider4 {
+    width: 30%;
+    max-width: 600px;
+    height: 80vh;
+    max-height: 480px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 3px solid white;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: rgba(0, 171, 74);
+    margin-bottom: 61px;
+}
+
+.slides,
+#slides1,
+#slides2,
+#slides3,
+#slides4 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide {
+    min-width: 100%;
+    transition: transform 0.5s ease-in-out;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+.picture_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    font-size: 18px;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    border-radius: 0px 0px 0px 0px;
+}
+
+.controls,
+#controls1,
+#controls2,
+#controls3,
+#controls4 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+button,
+#prevBtn1,
+#nextBtn1,
+#prevBtn2,
+#nextBtn2,
+#prevBtn3,
+#nextBtn3,
+#prevBtn4,
+#nextBtn4 {
+    font-size: 20px;
+    padding: 8px 16px;
+    background: orange;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+button:hover,
+#prevBtn1:hover,
+#nextBtn1:hover,
+#prevBtn2:hover,
+#nextBtn2:hover,
+#prevBtn3:hover,
+#nextBtn3:hover
+#prevBtn4:hover,
+#nextBtn4:hover {
+    background: black;
+    transform: scale(1.1);
+}
+
+.dots,
+#dotsContainer1,
+#dotsContainer2,
+#dotsContainer3,
+#dotsContainer4 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: orange;
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background: #aaa;
+}
+
+@media (max-width: 768px) {
+    .sliders-container {
+        flex-direction: column;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .sliders-container {
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+
+    .slider1 {
+        order: 1;
+    }
+
+    .slider2 {
+        order: 2;
+    }
+
+    .slider3 {
+        order: 3;
+    }
+
+    .slider4 {
+        order: 4;
+    }
+}
+
+/* Описываем саму анимацию */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Полностью прозрачный */
+    transform: translateY(100px); /* Слегка смещен вниз для эффекта "всплытия" */
+  }
+  to {
+    opacity: 1; /* Полностью видимый */
+    transform: translateY(0); /* Возвращается в исходную точку */
+  }
+}
+
+/* Применяем анимацию к контейнерам */
+#slider1,
+#slider2,
+#slider3,
+#slider4 {
+  animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+}

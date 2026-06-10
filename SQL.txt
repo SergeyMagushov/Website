@@ -1,0 +1,63 @@
+CREATE DATABASE IF NOT EXISTS `Authorisation` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `Authorisation`;
+
+
+CREATE TABLE `Feedback` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `rating` int NOT NULL,
+  `text` varchar(3000) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=20;
+
+
+INSERT INTO `Feedback` (`id`, `name`, `rating`, `text`, `date`) VALUES
+(1, 'Школьник обыкновннй', 10, 'Ты снимаешь крутые видики по Терке а можна снимать с табой вместе Терку', '2026-04-24'),
+(2, 'Пользователь', 10, 'r4tertertertertert', '2026-04-24'),
+(3, 'Пользователь', 10, 'sdfsdfsdfsdfsdfsdfsdf', '2026-04-24'),
+(4, 'Пользователь', 10, 'Проверкапвап', '2026-05-06'),
+(5, 'Пользователь1', 10, 'У тибя плахой мантаж я бы лучше видосики по Терке делал но я не делаю их', '2026-05-08'),
+(6, 'Пользователь', 10, 'Бузатронина', '2026-05-08'),
+(7, 'Пользователь1', 10, 'Крутые видосы', '2026-05-08'),
+(8, 'Пользователь', 5, 'Атдай Терку снимать', '2026-05-13'),
+(9, 'Шкила', 7, 'Ты зачем нас шкилами называешь', '2026-05-15'),
+(10, 'Шкила', 7, 'Ты зачем нас шкилами называешь', '2026-05-15'),
+(11, 'Бузатронина', 10, 'Ти крутая бузня', '2026-05-18'),
+(12, 'Бузня', 10, 'Бузня Индастрис', '2026-05-18'),
+(13, 'Бузатронина', 10, 'Ти крутая бузня', '2026-05-18'),
+(14, 'Бузатронина', 7, 'Проверочный комментарий', '2026-05-22'),
+(15, 'Test1', 10, 'Комментарий 1', '2026-06-08'),
+(16, 'Test1', 1, 'Adfafaf af as a', '2026-06-07'),
+(17, 'serth sdhsd hsdf ', 1, 'awerawe aa se awe aw', '2026-06-09'),
+(18, 'Пользователь5', 7, 'Проверка написания логина', '2026-06-08'),
+(19, 'Пользователь ', 10, 'dfgdfgdfgfdgdfg', '2026-06-10');
+
+
+CREATE TABLE `Leaderboard` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+  `player` varchar(100) NOT NULL,
+  `score` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=4;
+
+
+INSERT INTO `Leaderboard` (`id`, `player`, `score`) VALUES
+(1, 'Пользователь1', 63),
+(2, 'Пользователь', 280),
+(3, 'Пользователь5', 397);
+
+
+CREATE TABLE `Users` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `login` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=7;
+
+
+INSERT INTO `Users` (`id`, `login`, `password`, `email`) VALUES
+(1, 'Пользователь', '12345678', '1@1'),
+(2, 'Пользователь1', '12345678', '1@1'),
+(3, 'Пользователь2', '12345678', '1@1'),
+(4, 'Пользователь3', '12345678', '1@1'),
+(5, 'Пользователь4', '12345678', '1@1'),
+(6, 'Пользователь5', '12345678', '1@1');

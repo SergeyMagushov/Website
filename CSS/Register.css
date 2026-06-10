@@ -1,0 +1,107 @@
+html {
+  overflow: hidden;
+}
+
+.container {
+  color: #333;
+  line-height: 1.6;
+  min-height: calc(100vh - 61px); 
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-image: url("../Images/Backgrounds/Auth.jpeg"); */
+  background-image: url("../Images/Backgrounds/Feedback.jpeg");
+  background-size: cover;
+}
+
+.container_register {
+  width: 500px;
+  height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 61px;
+  background-color: white;
+  border: 5px solid rgba(0, 171, 74);
+}
+
+input[type="text"] {
+  font-size: 20px;
+  width: 450px;
+  height: 40px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid grey;
+  border-radius: 5px;
+}
+
+input[type="password"] {
+  font-size: 20px;
+  width: 450px;
+  height: 40px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid grey;
+  border-radius: 5px;
+}
+
+input[type="email"] {
+  font-size: 20px;
+  width: 450px;
+  height: 40px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid grey;
+  border-radius: 5px;
+}
+
+.message {
+  margin-left: 110px;
+}
+
+input[type="submit"] {
+  width: 120px;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 165px;
+  font-size: medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid grey;
+  border-radius: 5px;
+  cursor: pointer; 
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(255, 136, 0);
+}
+
+/* Описываем саму анимацию */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Полностью прозрачный */
+    transform: translateY(100px); /* Слегка смещен вниз для эффекта "всплытия" */
+  }
+  to {
+    opacity: 1; /* Полностью видимый */
+    transform: translateY(0); /* Возвращается в исходную точку */
+  }
+}
+
+/* Применяем анимацию к контейнеру */
+.container_register {
+  animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+}
+
+.modal-button:hover {
+  background-color: rgb(255, 136, 0)
+}
