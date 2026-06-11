@@ -58,8 +58,6 @@ INSERT INTO `Leaderboard` (`id`, `player`, `score`) VALUES
 (15, 'Пользователь14', 398);
 
 
-
-
 CREATE TABLE `Users` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `login` varchar(100) NOT NULL,
