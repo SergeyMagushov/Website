@@ -13,72 +13,65 @@ html {
   /* background-image: url("../Images/Backgrounds/Auth.jpeg"); */
   background-image: url("../Images/Backgrounds/Feedback.jpeg");
   background-size: cover;
+  background-position: center;
 }
 
 .container_register {
-  width: 500px;
-  height: 620px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 61px;
-  background-color: white;
-  border: 5px solid rgba(0, 171, 74);
+  width: 22vw;
+  height: 54vh;
+  margin-bottom: 6vh;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 5px solid rgb(0, 171, 74);
+  box-sizing: border-box;
+  padding: 2vh 2vw;
+  text-align: center;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-input[type="text"] {
-  font-size: 20px;
-  width: 450px;
-  height: 40px;
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid grey;
-  border-radius: 5px;
+.container_register * {
+  text-align: left;
 }
 
-input[type="password"] {
-  font-size: 20px;
-  width: 450px;
-  height: 40px;
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid grey;
-  border-radius: 5px;
+.container_register h1,
+.container_register h2,
+.container_register h3,
+.container_register .form-title {
+  text-align: center;
 }
 
+input[type="text"],
+input[type="password"],
 input[type="email"] {
-  font-size: 20px;
-  width: 450px;
-  height: 40px;
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: clamp(14px, 1vw, 20px);
+  width: 18vw;
+  height: 4vh;
+  margin-top: 1vh;
+  display: block;
   border: 3px solid grey;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .message {
-  margin-left: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 input[type="submit"] {
-  width: 120px;
-  height: 40px;
-  margin-top: 20px;
-  margin-left: 165px;
+  width: 9vw;
+  height: 4vh;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
   font-size: medium;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
   border: 3px solid grey;
   border-radius: 5px;
   cursor: pointer; 
+  white-space: nowrap;
+  text-align: center;
 }
 
 input[type="submit"]:hover {
@@ -89,7 +82,7 @@ input[type="submit"]:hover {
 @keyframes fadeIn {
   from {
     opacity: 0; /* Полностью прозрачный */
-    transform: translateY(100px); /* Слегка смещен вниз для эффекта "всплытия" */
+    transform: translateY(9vh); /* Слегка смещен вниз для эффекта "всплытия" */
   }
   to {
     opacity: 1; /* Полностью видимый */
@@ -103,5 +96,5 @@ input[type="submit"]:hover {
 }
 
 .modal-button:hover {
-  background-color: rgb(255, 136, 0)
+  background-color: rgb(255, 136, 0);
 }

@@ -140,7 +140,7 @@
 
     <div class="container">
         <div class="container_auth">
-            <h1 class="auth-title">Вход в систему</h1>
+            <h1 class="auth-title" style="color: grey">Вход в систему</h1>
             <form method="POST" action="">
                 Логин: <input type="text" name="login" required><br>
                 Пароль: <input type="password" name="password" required><br>

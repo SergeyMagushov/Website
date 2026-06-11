@@ -70,7 +70,7 @@ function score_publish()
     global $connection;
 
     // Сортировка данных из таблицы feedback под убыванию дат комментариев
-    $sql = "SELECT player, score FROM Leaderboard ORDER BY score DESC LIMIT 10;";
+    $sql = "SELECT player, score FROM Leaderboard ORDER BY score DESC LIMIT 15;";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {

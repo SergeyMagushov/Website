@@ -13,56 +13,58 @@ html {
   /* background-image: url("../Images/Backgrounds/Auth.jpeg"); */
   background-image: url("../Images/Backgrounds/Feedback.jpeg");
   background-size: cover;
+  background-position: center;
 }
 
 .container_auth {
-  height: 430px;
-  width: 510px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: white;
-  border: 5px solid rgba(0, 171, 74);
-  margin-bottom: 61px;
+  width: 22vw;
+  height: 36vh;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 5px solid rgb(0, 171, 74);
+  margin-bottom: 6vh;
+  box-sizing: border-box;
+  padding: 2vh 2vw;
+  text-align: center;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-input[type="text"] {
-  font-size: 20px;
-  width: 450px;
-  height: 40px;
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid grey;
-  border-radius: 5px;
+.container_auth * {
+  text-align: left;
 }
 
+.container_auth h1,
+.container_auth h2,
+.container_auth h3,
+.container_auth .form-title {
+  text-align: center;
+}
+
+input[type="text"],
 input[type="password"] {
-  font-size: 20px;
-  width: 450px;
-  height: 40px;
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: clamp(14px, 1vw, 20px);
+  width: 18vw;
+  height: 4vh;
+  margin-top: 1vh;
+  display: block;
   border: 3px solid grey;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 input[type="submit"] {
-  width: 200px;
-  height: 40px;
-  margin-top: 20px;
-  margin-left: 127px;
+  width: 9vw;
+  height: 4vh;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
   font-size: medium;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
   border: 3px solid grey;
   border-radius: 5px;
-  cursor: pointer; 
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
 }
 
 input[type="submit"]:hover {
@@ -80,7 +82,7 @@ input[type="submit"]:hover {
   from {
     opacity: 0;
     /* Полностью прозрачный */
-    transform: translateY(100px);
+    transform: translateY(9vh);
     /* Слегка смещен вниз для эффекта "всплытия" */
   }
 
@@ -99,5 +101,5 @@ input[type="submit"]:hover {
 }
 
 .modal-button:hover {
-  background-color: rgb(255, 136, 0)
+  background-color: rgb(255, 136, 0);
 }

@@ -37,13 +37,27 @@ CREATE TABLE `Leaderboard` (
   `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,  
   `player` varchar(100) NOT NULL,
   `score` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=16;
 
 
 INSERT INTO `Leaderboard` (`id`, `player`, `score`) VALUES
-(1, 'Пользователь1', 63),
-(2, 'Пользователь', 280),
-(3, 'Пользователь5', 397);
+(1, 'Пользователь', 63),
+(2, 'Пользователь1', 280),
+(3, 'Пользователь2', 397),
+(4, 'Пользователь3', 131),
+(5, 'Пользователь4', 280),
+(6, 'Пользователь5', 985),
+(7, 'Пользователь6', 1135),
+(8, 'Пользователь7', 1516),
+(9, 'Пользователь8', 53),
+(10, 'Пользователь9', 731),
+(11, 'Пользователь10', 683),
+(12, 'Пользователь11', 1783),
+(13, 'Пользователь12', 1948),
+(14, 'Пользователь13', 2107),
+(15, 'Пользователь14', 398);
+
+
 
 
 CREATE TABLE `Users` (
@@ -51,7 +65,7 @@ CREATE TABLE `Users` (
   `login` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=7;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=16;
 
 
 INSERT INTO `Users` (`id`, `login`, `password`, `email`) VALUES
@@ -60,4 +74,13 @@ INSERT INTO `Users` (`id`, `login`, `password`, `email`) VALUES
 (3, 'Пользователь2', '12345678', '1@1'),
 (4, 'Пользователь3', '12345678', '1@1'),
 (5, 'Пользователь4', '12345678', '1@1'),
-(6, 'Пользователь5', '12345678', '1@1');
+(6, 'Пользователь5', '12345678', '1@1'),
+(7, 'Пользователь6', '12345678', '1@1'),
+(8, 'Пользователь7', '12345678', '1@1'),
+(9, 'Пользователь8', '12345678', '1@1'),
+(10, 'Пользователь9', '12345678', '1@1'),
+(11, 'Пользователь10', '12345678', '1@1'),
+(12, 'Пользователь11', '12345678', '1@1'),
+(13, 'Пользователь12', '12345678', '1@1'),
+(14, 'Пользователь13', '12345678', '1@1'),
+(15, 'Пользователь14', '12345678', '1@1');

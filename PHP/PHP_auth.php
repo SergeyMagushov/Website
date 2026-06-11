@@ -32,7 +32,7 @@ if (isset($_POST['button_auth'])) {
         // if ($row['login'] === $login && $row['password'] === $password) {
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['login'] = $row['login'];
-        header("Location: http://localhost/Проект%20(сайт)/HTML/Feedback.php"); // Перенаправление на нужную страницу при авторизации
+        header("Location: ../HTML/Feedback.php"); // Перенаправление на нужную страницу при авторизации
         exit();
         // }
     } else {

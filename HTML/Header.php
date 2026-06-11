@@ -30,16 +30,16 @@
                         <!-- Видно только авторизованным -->
                         <li><a href="Clicker.php">Мини-игра</a></li>
                     <?php endif; ?>
-
+                    
                     <!-- Отдельный пунк меню, который показывается, когда пользователь авторизовался -->
                     <?php if (isset($_SESSION['login'])): ?>
                         <!-- Видно только авторизованным -->
-                        <span style="margin-left: 20px;">Вы вошли как:
-                            <strong><?php echo $_SESSION['login']; ?></strong></span>
+                        <li class="user-info">Вы вошли как: <strong><?php echo $_SESSION['login']; ?></strong></li>
                         <li><a href="../PHP/PHP_QuitAuth.php">Выйти</a></li>
                     <?php else: ?>
                         <li><a href="Auth.php">Авторизация</a></li>
                     <?php endif; ?>
+
                 </ul>
             </nav>
         </div>

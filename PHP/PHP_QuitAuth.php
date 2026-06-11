@@ -8,6 +8,6 @@ session_start();
 $_SESSION['message_auth_quit'] = "Вы вышли из личного кабинета";
 
 // Перенаправляем пользователя на страницу авторизации
-header("Location: http://localhost/Проект%20(сайт)/HTML/Auth.php");
+header("Location: ../HTML/Auth.php");
 exit();
 ?>

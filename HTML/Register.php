@@ -55,7 +55,7 @@
 
     <div class="container">
         <div class="container_register">
-            <h1 class="auth-title">Регистрация</h1>
+            <h1 class="auth-title" style="color: grey">Регистрация</h1>
             <form method="POST" action="">
                 Логин: <input type="text" name="login" minlength="8" placeholder="Минимум 8 символов" required><br>
                 Пароль: <input type="password" name="password" minlength="8" placeholder="Минимум 8 символов"

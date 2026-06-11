@@ -36,7 +36,7 @@ if (isset($_POST['button_reg'])) { // Обозначаем, что все, чт�
             $sql1 = $connection->prepare($sql);
             if ($sql1->execute()) {
                 $_SESSION['message_register_success'] = "Вы зарегистрированы" . "<br>";
-                header("Location: http://localhost/Проект%20(сайт)/HTML/Auth.php");
+                header("Location: ../HTML/Auth.php");
             } else {
                 $message_register_fail_connection = "Ошибка регистрации: " . $sql1->error;
             }

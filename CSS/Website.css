@@ -9,21 +9,21 @@ html {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 2vw;
     /* background-image: url("../Images/Backgrounds/Website.jpeg"); */
     background-image: url("../Images/Gallery/gggame-гггейм.gif");
     background-size: cover;
-    padding: 20px;
+    padding: 2vh 1vw;
     box-sizing: border-box;
 }
 
 .card {
-    width: 380px;
-    height: 380px;
+    width: 20vw;
+    height: 20vw;
     perspective: 1000px;
     cursor: pointer;
-    margin: 10px;
-    margin-bottom: 61px;
+    margin: 1vh 1vw;
+    margin-bottom: 6vh;
 }
 
 .card-inner {
@@ -56,7 +56,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 2vh 1vw;
 }
 
 .card-front {
@@ -94,39 +94,39 @@ html {
 }
 
 .card-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
-    width: 100px;
-    height: 70px;
+    font-size: clamp(30px, 3vw, 50px);
+    margin-bottom: 1vh;
+    width: 5vw;
+    height: 6vh;
 }
 
 .card-title {
-    font-size: 22px;
+    font-size: clamp(18px, 1.5vw, 26px);
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 1vh;
 }
 
 .card-description {
-    font-size: 14px;
+    font-size: clamp(14px, 1vw, 18px);
     line-height: 1.4;
-    max-height: 100px;
+    max-height: 12vh;
     overflow: hidden;
 }
 
 .card-back .card-description {
-    margin-bottom: 15px;
+    margin-bottom: 1vh;
 }
 
 .btn {
     background: white;
     color: rgba(0, 171, 74);
     border: none;
-    padding: 8px 16px;
+    padding: 1vh 1vw;
     border-radius: 50px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: clamp(12px, 0.8vw, 14px);
 }
 
 .btn:hover {
@@ -152,12 +152,12 @@ html {
 
 .instructions {
     color: white;
-    margin-top: 30px;
-    font-size: 16px;
+    margin-top: 3vh;
+    font-size: clamp(14px, 1vw, 16px);
     background: rgba(255, 255, 255, 0.1);
-    padding: 12px;
+    padding: 1vh 1vw;
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 26vw;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -180,7 +180,7 @@ html {
 @keyframes fadeIn {
   from {
     opacity: 0; /* Полностью прозрачный */
-    transform: translateY(100px); /* Слегка смещен вниз для эффекта "всплытия" */
+    transform: translateY(9vh); /* Слегка смещен вниз для эффекта "всплытия" */
   }
   to {
     opacity: 1; /* Полностью видимый */
@@ -192,5 +192,3 @@ html {
 .card {
   animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
 }
-
-
