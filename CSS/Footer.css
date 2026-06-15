@@ -54,7 +54,7 @@ footer nav ul li {
 footer nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: clamp(16px, 1.1vw, 20px);
+    font-size: clamp(14px, 0.9vw, 18px);
     font-weight: 600;
     transition: all 0.3s ease;
     text-shadow: 2px 2px 4px rgba(1, 1, 1, 1);
