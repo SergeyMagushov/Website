@@ -17,7 +17,10 @@ if (!$connection) {
 
 
 // Создание логики процесса авторизации пользователя при нажатии на кнопку авторизации с name 'button_auth' (в файле Auth.php)
-if (isset($_POST['button_auth'])) {
+if (isset($_POST['button_auth'])) {    
+    // Объявляем переменную для вывода ошибки в самом начале, чтобы в дальнейшем не было проблем из условий
+    $message_auth_fail = ""; 
+    
     $login = $_POST['login'];
     $password = $_POST['password'];
     // SQL запрос для провперки логина и пароли с таблице Users

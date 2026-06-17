@@ -16,6 +16,11 @@ if (!$connection) {
 
 // Создание логики процесса регистрации пользователя
 if (isset($_POST['button_reg'])) { // Обозначаем, что все, что внутри, будет работать при нажатии на кнопку с id "button_reg"
+    // Объявляем переменные для вывода ошибок в самом начале, чтобы в дальнейшем не было проблем из условий
+    $message_register_fail_connection = "";
+    $message_register_fail_passwords = "";
+    $message_register_fail_login = "";
+
     // Задаем переменные для полей ввода логина, пароля и email и "связываем" их с id полей в html    
     $login = htmlspecialchars($_POST['login']);
     $password = htmlspecialchars($_POST['password']);
