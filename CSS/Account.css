@@ -1,0 +1,42 @@
+html {
+   overflow: hidden;
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  line-height: 1.6;
+  min-height: calc(100vh - 61px); 
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../Images/Backgrounds/Feedback.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.feedback {
+  width: 52vw;
+  height: 65vh;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 5px solid rgba(0, 171, 74);
+  margin-right: 4vw;
+  margin-bottom: 6vh;
+  animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+}
+
+/* Описываем саму анимацию */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Полностью прозрачный */
+    transform: translateY(9vh); /* Слегка смещен вниз для эффекта "всплытия" */
+  }
+  to {
+    opacity: 1; /* Полностью видимый */
+    transform: translateY(0); /* Возвращается в исходную точку */
+  }
+}

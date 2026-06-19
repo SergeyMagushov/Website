@@ -34,7 +34,7 @@
                     <!-- Отдельный пунк меню, который показывается, когда пользователь авторизовался -->
                     <?php if (isset($_SESSION['login'])): ?>
                         <!-- Видно только авторизованным -->
-                        <li class="user-info" style="font-family: times new roman">Вы вошли как: <strong><?php echo $_SESSION['login']; ?></strong></li>
+                        <li class="user-info"><a href="Account.php">Личный кабинет (<strong><?php echo $_SESSION['login']; ?></strong>)</a></li>
                         <li><a href="../PHP/PHP_QuitAuth.php">Выйти</a></li>
                     <?php else: ?>
                         <li><a href="Auth.php">Авторизация</a></li>

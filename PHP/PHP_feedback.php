@@ -56,7 +56,7 @@ function feedback_publish()
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
-    // Сортировка данных из таблицы feedback под убыванию дат комментариев
+    // Сортировка данных из таблицы feedback по убыванию
     $sql = "SELECT name, rating, text, date FROM Feedback ORDER BY date DESC";
     $result = mysqli_query($connection, $sql);
 
