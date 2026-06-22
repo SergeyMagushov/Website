@@ -1,5 +1,5 @@
 html {
-   overflow: hidden;
+  overflow: hidden;
 }
 
 .container {
@@ -7,7 +7,7 @@ html {
   padding: 0;
   color: #333;
   line-height: 1.6;
-  min-height: calc(100vh - 61px); 
+  min-height: calc(100vh - 61px);
   width: 100%;
   display: flex;
   align-items: center;
@@ -17,26 +17,121 @@ html {
   background-position: center;
 }
 
+.clicker-auth {
+  width: 21vw;
+  height: 65vh; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+  margin-bottom: 6vh;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
 .feedback {
   width: 52vw;
   height: 65vh;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2vh 1.5vw; /* Отступы внутри, чтобы текст не перекрывался закругленной рамкой формы */
+  box-sizing: border-box; 
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   border: 5px solid rgba(0, 171, 74);
+  border-radius: 24px;
   margin-right: 4vw;
   margin-bottom: 6vh;
-  animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Стилизация ползунка, чтобы он тоже был скруглённым и аккуратным */
+.feedback::-webkit-scrollbar {
+  width: 8px;
+}
+
+.feedback::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 15px 0; /* Отступы сверху и снизу, чтобы ползунок не упирался в углы */
+}
+
+/* Цвет ползунка и закругление его границ */
+.feedback::-webkit-scrollbar-thumb {
+  background: rgba(0, 171, 74, 0.5); 
+  border-radius: 10px;
+}
+
+.feedback::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 171, 74, 0.8);
+}
+
+.clicker {
+  width: 21vw;
+  height: 17vh;
+  user-select: none;  /* Запрет выделения текста при частых кликах */
+  background-color: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(10px);
+  border: 5px solid rgba(0, 171, 74);
+  border-radius: 24px;
+  padding: 2vh 2vw;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.auth {
+  width: 21vw;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Элементы начинают идти сверху */
+  user-select: none;  /* Запрет выделения текста при частых кликах */
+  background-color: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(10px);
+  border: 5px solid rgba(0, 171, 74);
+  border-radius: 24px;
+  padding: 2vh 2vw;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box; /* Гарантирует, что padding не раздует высоту больше 40vh */
+}
+
+/* Делаем, чтобы кнопка внутри контейнера auth находилась снизу */
+.auth input[type="submit"] {
+  margin-top: auto; /* /Перемещение кнопки в низ контейнера*/
+  margin-bottom: 0; 
+}
+
+input[type="submit"] {
+  width: 10vw;
+  height: 4vh;
+  font-size: medium;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid grey;
+  border-radius: 5px;
+  cursor: pointer; 
+  background-color: #fff;
+  transition: background-color 0.2s;
+  margin-top: 1vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type="submit"]:hover {
+  background-color: rgb(255, 136, 0);
+  color: white;
 }
 
 /* Описываем саму анимацию */
 @keyframes fadeIn {
   from {
-    opacity: 0; /* Полностью прозрачный */
-    transform: translateY(9vh); /* Слегка смещен вниз для эффекта "всплытия" */
+    opacity: 0;
+    /* Полностью прозрачный */
+    transform: translateY(9vh);
+    /* Слегка смещен вниз для эффекта "всплытия" */
   }
+
   to {
-    opacity: 1; /* Полностью видимый */
-    transform: translateY(0); /* Возвращается в исходную точку */
+    opacity: 1;
+    /* Полностью видимый */
+    transform: translateY(0);
+    /* Возвращается в исходную точку */
   }
 }

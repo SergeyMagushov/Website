@@ -19,7 +19,7 @@ if (!$connection) {
     $message_account_fail = "";
 
 
-// Выводим информацию из таблиц базы данных, которая есть о пользователе для наполнения личного кабинета информацией
+// Выводим информацию из таблицы отзывов
 function feedback_info()
 {    
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
@@ -27,14 +27,66 @@ function feedback_info()
 
     $user = $_SESSION['login'];
     // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
-    $sql = "SELECT name, rating, text, date FROM Feedback WHERE name = '$user' ORDER BY date DESC";
+    $sql = "SELECT name, rating, text FROM Feedback WHERE name = '$user' ORDER BY date DESC";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<strong>" . "Оценка: " . "</strong>" . (int) $row['rating'] . "/10" . "<br>";
-            echo "<strong>" . "Начало просмотра: " . "</strong>" . htmlspecialchars($row['date']) . "<br>";
             echo "<strong>" . "Комментарий: " . "</strong>" . htmlspecialchars($row['text']);
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+        }
+    } else {
+        $message_account_fail = "Ошибка соединения" . "<br>";
+    }
+}
+
+// Выводим информацию из таблицы рекордов
+function clicker_info()
+{    
+    // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
+    global $connection;
+
+    $user = $_SESSION['login'];
+    // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
+    $sql = "SELECT player, score FROM Leaderboard WHERE player = '$user'";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<strong>" . "Результат: " . "</strong>" . (int) $row['score'] . "<br>";
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+        }
+    } else {
+        $message_account_fail = "Ошибка соединения" . "<br>";
+    }
+}
+
+// Выводим информацию из таблицы рекордов
+function auth_info()
+{    
+    // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
+    global $connection;
+
+    $user = $_SESSION['login'];
+    // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
+    $sql = "SELECT login, password, email FROM Users WHERE login = '$user'";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+            
+            // Делаем вывод пароля скрытым
+            echo "<strong>" . "Пароль: " . "</strong>";            
+            echo "<details style='display: inline-block; cursor: pointer;'>";
+            echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать пароль</summary>";
+            echo "<span style='background: #eee; border-radius: 3px;'>" . (int) $row['password'] . "</span>";
+            echo "</details><br>";
+
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+            echo "<strong>" . "E-mail: " . "</strong>" . htmlspecialchars($row['email']);
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
         }
     } else {

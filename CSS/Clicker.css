@@ -41,18 +41,41 @@ html, body {
 .scrollable-box {
     width: 21vw;
     height: 65vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2vh 1.5vw; /* Отступы внутри, чтобы текст не перекрывался закругленной рамкой формы */
+    box-sizing: border-box; 
     display: block; /* Для корректной работы вертикального скролла */
     font-size: clamp(18px, 1vw, 15px); 
     user-select: none; /* Запрет выделения текста при частых кликах */
-    background-color: rgba(255, 255, 255, 0.85); /* Полупрозрачный белый фон */
-    backdrop-filter: blur(10px); /* размытиt заднего плана */
+    background-color: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(10px); 
     border: 5px solid rgba(0, 171, 74); 
     border-radius: 24px; 
     padding: 2vh 2vw; 
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    overflow-y: auto; /* Вертикальная прокрутка, когда результатов больше 10 */
     margin-bottom: 6vh;
-    animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+    animation: fadeIn 0.8s ease-out forwards; 
+}
+
+/* Стилизация ползунка, чтобы он тоже был скруглённым и аккуратным */
+.scrollable-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollable-box::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 15px 0; /* Отступы сверху и снизу, чтобы ползунок не упирался в углы */
+}
+
+/* Цвет ползунка и закругление его границ */
+.scrollable-box::-webkit-scrollbar-thumb {
+    background: rgba(0, 171, 74, 0.5); 
+    border-radius: 10px;
+}
+
+.scrollable-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 171, 74, 0.8);
 }
 
 /* Блок главной игры (Кнопка печенья и счетчики) */

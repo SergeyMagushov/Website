@@ -15,8 +15,8 @@
 </head>
 
 <!-- Вывод сообщения об ошибке подключения -->
-    <?php if (!empty($message_account_fail)): ?>
-        <div id="errorModal" style="
+<?php if (!empty($message_account_fail)): ?>
+    <div id="errorModal" style="
             position: fixed;
             top: 0;
             left: 0;
@@ -28,7 +28,7 @@
             align-items: center;
             z-index: 999999;
         ">
-            <div style="
+        <div style="
                 background: white;
                 padding: 30px;
                 border-radius: 10px;
@@ -38,31 +38,41 @@
                 color: #333;
                 position: relative;
             ">
-                <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
-                <!-- ИСПРАВЛЕНО: имя переменной заменено на корректное message_score_fail -->
-                <p><?php echo $message_account_fail; ?></p>
-                <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
+            <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
+            <!-- ИСПРАВЛЕНО: имя переменной заменено на корректное message_score_fail -->
+            <p><?php echo $message_account_fail; ?></p>
+            <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
                     margin-top: 15px;
                     padding: 8px 25px;
                     cursor: pointer;
                     border: 3px solid grey;
                     border-radius: 5px;
                 ">ОК</button>
-            </div>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
 
 <body>
     <div class="container">
+        <!-- Левая колонка -->
         <div class="feedback">
             <h1 class="auth-title" style="color: grey">Ваши комментарии</h1>
             <?php feedback_info(); ?>
         </div>
-
-        <div class="clicker">
-            <h1 class="auth-title" style="color: grey">Ваши рекорды</h1>
-            <?php clicker_info(); ?>
+        
+        <div class="clicker-auth">
+            <div class="clicker">
+                <h1 class="auth-title" style="color: grey">Ваши рекорды</h1>
+                <?php clicker_info(); ?>
+            </div>
+            
+            <div class="auth">
+                <h1 class="auth-title" style="color: grey">Данные аккаунта</h1>
+                <?php auth_info(); ?>
+                <input type="submit" value="Выйти" onclick="window.location.href='../PHP/PHP_QuitAuth.php'; return false;">
+            </div>           
         </div>
+    </div>
 </body>
 
 </html>
