@@ -8,7 +8,7 @@ CREATE TABLE `Feedback` (
   `rating` int NOT NULL,
   `text` varchar(3000) NOT NULL,
   `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=20;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci AUTO_INCREMENT=27;
 
 
 INSERT INTO `Feedback` (`id`, `name`, `rating`, `text`, `date`) VALUES
@@ -30,7 +30,14 @@ INSERT INTO `Feedback` (`id`, `name`, `rating`, `text`, `date`) VALUES
 (16, 'Test1', 1, 'Adfafaf af as a', '2026-06-07'),
 (17, 'serth sdhsd hsdf ', 1, 'awerawe aa se awe aw', '2026-06-09'),
 (18, 'Пользователь5', 7, 'Проверка написания логина', '2026-06-08'),
-(19, 'Пользователь ', 10, 'dfgdfgdfgfdgdfg', '2026-06-10');
+(19, 'Пользователь', 10, 'dfgdfgdfgfdgdfg', '2026-06-10'),
+(20, 'Пользователь', 7, 'Бузатронина', '2026-04-24'),
+(21, 'Пользователь', 10, 'Терка - это круто', '2026-04-24'),
+(22, 'Пользователь', 8, 'Одни из лучших видео по Террарии', '2026-05-06'),
+(23, 'Пользователь', 5, 'Я бы лучше снимал Терку', '2026-06-10'),
+(24, 'Пользователь', 10, 'Я люблю смотреть твои видео', '2026-04-24'),
+(25, 'Пользователь', 10, 'Я вырос на твоих видео', '2026-04-24'),
+(26, 'Пользователь', 9, 'Ты воспитатель шкилы', '2026-05-06');
 
 
 CREATE TABLE `Leaderboard` (

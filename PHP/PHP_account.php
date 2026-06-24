@@ -34,7 +34,7 @@ function feedback_info()
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<strong>" . "Оценка: " . "</strong>" . (int) $row['rating'] . "/10" . "<br>";
             echo "<strong>" . "Комментарий: " . "</strong>" . htmlspecialchars($row['text']);
-            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";
@@ -55,7 +55,7 @@ function clicker_info()
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<strong>" . "Результат: " . "</strong>" . (int) $row['score'] . "<br>";
-            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной стркои от другой
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";
@@ -75,8 +75,13 @@ function auth_info()
 
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
+            // Делаем вывод пароля скрытым
+            echo "<strong>" . "Логин: " . "</strong>";            
+            echo "<details style='display: inline-block; cursor: pointer;'>";
+            echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать логин</summary>";
             echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
-            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+            echo "</details><br>";
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
             
             // Делаем вывод пароля скрытым
             echo "<strong>" . "Пароль: " . "</strong>";            
@@ -84,10 +89,15 @@ function auth_info()
             echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать пароль</summary>";
             echo "<span style='background: #eee; border-radius: 3px;'>" . (int) $row['password'] . "</span>";
             echo "</details><br>";
-
-            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
-            echo "<strong>" . "E-mail: " . "</strong>" . htmlspecialchars($row['email']);
-            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного комментария от другого
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
+            
+            // Делаем вывод пароля скрытым
+            echo "<strong>" . "E-mail: " . "</strong>";
+            echo "<details style='display: inline-block; cursor: pointer;'>";
+            echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать E-mail</summary>";
+            echo "<span style='background: #eee; border-radius: 3px;'>" . htmlspecialchars($row['email']);
+            echo "</details><br>";
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";
