@@ -13,6 +13,11 @@ header {
     display: flex;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    /* База для абсолютного позиционирования кнопки "Музыка" */
+    position: relative;
+    z-index: 100;
+    overflow: visible;
 }
 
 .header-content {
@@ -29,7 +34,7 @@ header {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: white;         
+    color: white;
     font-size: clamp(22px, 1.6vw, 30px);
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -40,12 +45,18 @@ header {
     font-style: normal;
 }
 
+header nav {
+    display: flex;    /* Возвращаем обычное поведение: меню идет сразу за логотипом, не сдвигаясь */
+    margin-left: 0; 
+}
+
 header nav ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-    align-items: center; /* Центрирует все элементы внутри списка по вертикали */
+    align-items: center;
+    /* Центрирует все элементы внутри списка по вертикали */
 }
 
 header nav ul li {
@@ -54,13 +65,15 @@ header nav ul li {
 }
 
 header nav ul li a,
-header nav ul li.user-info {
+header nav ul li.user-info,
+.music-dropdown .music-toggle {
     color: white;
     font-size: clamp(14px, 0.9vw, 18px);
     text-shadow: 2px 2px 4px rgba(1, 1, 1, 1);
 }
 
-header nav ul li a {
+header nav ul li a,
+.music-dropdown .music-toggle {
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -75,13 +88,125 @@ header nav ul li.user-info strong {
     font-weight: 700;
 }
 
-header nav ul li:not(.user-info):hover {
+/* Эффект ховера для основного меню и кнопки Музыка */
+header nav ul li:not(.user-info):hover,
+.music-dropdown:hover .music-toggle {
     transform: translate(2px, 2px);
 }
 
-header nav ul li a:hover {
+header nav ul li a:hover,
+.music-dropdown .music-toggle:hover {
     color: #9b9795;
 }
+
+
+/* ==========================================================================
+   ВЫПАДАЮЩИЙ СПИСОК «МУЗЫКА» (ИНТЕГРИРОВАН ПОЛЗУНОК И СТИЛИ ОКОН)
+   ========================================================================== */
+
+/* Контейнер пункта меню Музыка */
+.music-dropdown {
+    position: absolute;    
+    right: 2vw;          /* Отступ от самого правого физического края экрана */
+    top: 50%;            /* Выравнивание по центру хедера по вертикали */
+    transform: translateY(-50%); /* Точная калибровка вертикального центра */
+    display: inline-block;
+}
+
+/* Корректируем ховер, так как transform уже занят выравниванием */
+.music-dropdown:hover {
+    transform: translateY(-50%) translate(2px, 2px);
+}
+
+/* Курсор-указатель и принудительный возврат белого цвета */
+.music-dropdown .music-toggle {
+    cursor: pointer;
+    color: white !important; /* Гарантирует белый цвет вместо синего */
+}
+
+/* Стили самого выпадающего блока */
+.music-dropdown .music-menu {
+    display: none;    /* Изначально скрыт */
+    position: absolute;    /* Вырывает из потока, чтобы быть поверх контента страниц */
+    top: calc(100%); 
+    right: 0;     /* Выравнивание по правому краю, чтобы меню не улезало за экран */
+    
+    /* ИЗМЕНЕНИЯ ИЗ ВАШЕГО ОБРАЗЦА: */
+    width: 14vw;          /* Оптимальная ширина для названий треков Terraria */
+    height: 45vh;         /* Ограничиваем высоту окна композиций */
+    overflow-y: auto;     /* Включает вертикальный ползунок */
+    overflow-x: hidden;   /* Полностью запрещает некрасивый горизонтальный скролл */
+    
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border: 5px solid rgb(0, 171, 74);
+    border-radius: 24px;  /* Полностью в стиле вашего образца */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);    /* Плотная тень для отделения от страниц */
+    padding: 2vh 0;       /* Внутренние паддинги подстроены под форму */
+    margin: 0;
+    list-style: none;
+    z-index: 999;    /* Максимальный приоритет наложения над всеми контейнерами */
+}
+
+/* Невидимый защитный мостик, удерживающий меню открытым при ведении мыши вниз */
+.music-dropdown .music-menu::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    background: transparent;
+}
+
+/* Ссылки внутри выпадающего списка */
+.music-dropdown .music-menu li {
+    margin-left: 0;    /* Сбрасываем внешний отступ хедера для внутренних пунктов */
+    width: 100%;
+}
+
+.music-dropdown .music-menu li a {
+    display: block;
+    padding: 1vh 1.5vw;    /* Паддинги синхронизированы с вашим образцом формы */
+    font-size: clamp(13px, 0.85vw, 17px);    /* Размер чуть компактнее основного меню */
+    font-weight: 600;
+    color: grey;
+    white-space: nowrap;    /* Запрещает тексту переноситься на новую строку */
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Эффект ховера для пунктов внутри выпадающего списка */
+.music-dropdown .music-menu li a:hover {
+    background: rgb(0, 171, 74);    /* Затемнение фона пункта при наведении */
+    color: white;    /* Текст остается белым */
+}
+
+/* Логика открытия: при наведении на контейнер показываем список */
+.music-dropdown:hover .music-menu {
+    display: block;
+}
+
+/* Стилизация ползунка */
+.music-dropdown .music-menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.music-dropdown .music-menu::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 15px 0; /* Отступы сверху и снизу, чтобы ползунок не упирался в закругления */
+}
+
+/* Цвет ползунка и закругление его границ */
+.music-dropdown .music-menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 171, 74, 0.5); 
+    border-radius: 10px;
+}
+
+.music-dropdown .music-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 171, 74, 0.8);
+}
+
 
 /* @media (min-width: 768px) {
     .header {

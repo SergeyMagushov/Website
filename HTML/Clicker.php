@@ -37,7 +37,6 @@
                 position: relative;
             ">
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Поздравляем</p>
-                <!-- ИСПРАВЛЕНО: имя переменной заменено на корректное message_score_success -->
                 <p><?php echo $message_score_success; ?></p>
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
                     margin-top: 15px;
@@ -75,7 +74,6 @@
                 position: relative;
             ">
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
-                <!-- ИСПРАВЛЕНО: имя переменной заменено на корректное message_score_fail -->
                 <p><?php echo $message_score_fail; ?></p>
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
                     margin-top: 15px;
