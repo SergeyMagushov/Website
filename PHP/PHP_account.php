@@ -62,7 +62,7 @@ function clicker_info()
     }
 }
 
-// Выводим информацию из таблицы рекордов
+// Выводим информацию из таблицы пользователей
 function auth_info()
 {    
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
@@ -70,7 +70,7 @@ function auth_info()
 
     $user = $_SESSION['login'];
     // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
-    $sql = "SELECT login, password, email FROM Users WHERE login = '$user'";
+    $sql = "SELECT login, password, email, time FROM Users WHERE login = '$user'";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
@@ -98,6 +98,10 @@ function auth_info()
             echo "<span style='background: #eee; border-radius: 3px;'>" . htmlspecialchars($row['email']);
             echo "</details><br>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
+
+            // Вывод времени на сайте (с авторизацией)
+            echo "<strong>" . "Время на сайте (в секундах): " . "</strong>" . (int) $row['time'] . "<br>";
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строrи от другой
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";

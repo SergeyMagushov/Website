@@ -131,6 +131,7 @@
                         <div class="dots" id="dotsContainer3"></div>
                 </div>
 
+                <!-- Слайдер 4 -->
                 <div class="slider4" id="slider4">
                         <h1>Хайлайты GGGAME</h1>
                         <div class="slides" id="slides4">
