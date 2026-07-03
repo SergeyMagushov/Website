@@ -16,12 +16,12 @@ if (!$connection) {
 // Закрытие соединения можно не прописыать, так как оно существляется автоматически
 
 // Объявляем переменные для вывода ошибок в самом начале, чтобы в дальнейшем не было проблем из условий
-    $message_account_fail = "";
+$message_account_fail = "";
 
 
 // Выводим информацию из таблицы отзывов
 function feedback_info()
-{    
+{
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
@@ -43,7 +43,7 @@ function feedback_info()
 
 // Выводим информацию из таблицы рекордов
 function clicker_info()
-{    
+{
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
@@ -64,7 +64,7 @@ function clicker_info()
 
 // Выводим информацию из таблицы пользователей
 function auth_info()
-{    
+{
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
@@ -76,32 +76,41 @@ function auth_info()
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             // Делаем вывод пароля скрытым
-            echo "<strong>" . "Логин: " . "</strong>";            
+            echo "<strong>" . "Логин: " . "</strong>";
             echo "<details style='display: inline-block; cursor: pointer;'>";
             echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать логин</summary>";
-            echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
-            echo "</details><br>";
+            echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']);
+            echo "</details>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
-            
+
             // Делаем вывод пароля скрытым
-            echo "<strong>" . "Пароль: " . "</strong>";            
+            echo "<strong>" . "Пароль: " . "</strong>";
             echo "<details style='display: inline-block; cursor: pointer;'>";
             echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать пароль</summary>";
             echo "<span style='background: #eee; border-radius: 3px;'>" . (int) $row['password'] . "</span>";
-            echo "</details><br>";
+            echo "</details>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
-            
+
             // Делаем вывод пароля скрытым
             echo "<strong>" . "E-mail: " . "</strong>";
             echo "<details style='display: inline-block; cursor: pointer;'>";
             echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать E-mail</summary>";
             echo "<span style='background: #eee; border-radius: 3px;'>" . htmlspecialchars($row['email']);
-            echo "</details><br>";
+            echo "</details>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
 
-            // Вывод времени на сайте (с авторизацией)
-            echo "<strong>" . "Время на сайте (в секундах): " . "</strong>" . (int) $row['time'] . "<br>";
-            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строrи от другой
+            // Делаем вывод времени, проведенного на сайте
+            $time = round((int) $row['time'] / 60); // Записываем в переменную время в минутах и округляем до 0 знаков после запятой
+            echo "<strong>" . "Время на сайте: " . "</strong>";
+            // Если больше или равно 60 минут - это уже час и больше, выводим отдельно и часы, и минуты. Если меньше выводим минуты из переменной $time
+            if ($time >= 60) {
+                $hours = round($time / 60);
+                $minutes = $time % 60; // Минуты считаются, как отсаток от деления. Например, всего 620 минут. Это 620 / 60 - остаток 20, это минуты
+                echo $hours . " ч. " . $minutes . " мин.";
+            } else {
+                echo $time . " мин.";
+            }
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";

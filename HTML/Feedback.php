@@ -2,6 +2,7 @@
 <?php require('Header.php'); ?>
 <?php require('../PHP/PHP_feedback.php'); ?>
 <?php require('../PHP/PHP_auth.php'); ?>
+<?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 

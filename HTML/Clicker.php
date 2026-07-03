@@ -1,5 +1,6 @@
 <?php session_start(); ?>
 <?php require('../PHP/PHP_clicker.php'); ?>
+<?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
 <html lang="ru">
 

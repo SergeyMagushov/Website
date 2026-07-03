@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php require('Header.php'); ?>
 <?php require('Footer.php'); ?>
+<?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
