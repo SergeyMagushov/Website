@@ -50,11 +50,11 @@ if (isset($_POST['button_reg'])) { // Обозначаем, что все, чт�
     $row = mysqli_fetch_assoc($result);
 
     // проверка на то, не пустые ли поля логина, пароля и email, а также - не занят ли логин, который вводит пользователь
-    if (!empty($login) && !empty($password) && !empty($email) && $row['login'] !== $login) {
+    if (!empty($login) && !empty($password) && !empty($password1) && !empty($email) && $row['login'] !== $login) {
         // Проверка, совпадает ли пароль и проверочный пароль
         if ($password === $password1) {
             // Записываем данные созданных переменных (логин, пароль, Email) в соответствующие поля подключенной таблицы БД)     
-            $sql = "INSERT INTO `Users` (`login`, `password`, `email`) VALUES ('$login', '$password', '$email')"; // Определяем поля и переменные
+            $sql = "INSERT INTO `Users` (`login`, `password`, `email`, `avatar`) VALUES ('$login', '$password', '$email', '$avatar')"; // Определяем поля и переменные
             $sql1 = $connection->prepare($sql);
             if ($sql1->execute()) {
                 $_SESSION['message_register_success'] = "Вы зарегистрированы" . "<br>";

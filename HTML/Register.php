@@ -42,7 +42,8 @@
                 position: relative;
             ">
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
-                <p><?php echo $message_register_fail_connection, $message_register_fail_passwords, $message_register_fail_login; ?></p>
+                <p><?php echo $message_register_fail_connection, $message_register_fail_passwords, $message_register_fail_login; ?>
+                </p>
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
                     margin-top: 15px;
                     padding: 8px 25px;
@@ -57,13 +58,19 @@
     <div class="container">
         <div class="container_register">
             <h1 class="auth-title" style="color: grey">Регистрация</h1>
-            <form method="POST" action="">
+            <form method="POST" action="" enctype="multipart/form-data">
                 Логин: <input type="text" name="login" minlength="8" placeholder="Минимум 8 символов" required><br>
                 Пароль: <input type="password" name="password" minlength="8" placeholder="Минимум 8 символов"
                     required><br>
                 Повторите пароль: <input type="password" name="password1" placeholder="Должен совпадать с паролем"
                     required><br>
                 Email: <input type="email" name="email" required><br>
+                Аватар:
+                <label class="file-upload-label">
+                    <span id="file-name-text">Выберите файл...</span>
+                    <input type="file" name="avatar" id="avatar-input" accept="image/*"
+                        onchange="document.getElementById('file-name-text').innerText = this.files[0] ? this.files[0].name : 'Выберите файл...'">
+                </label>
                 Согласие на обработку персональных данных: <input type="checkbox" name="personal" required><br>
                 <input type="submit" name="button_reg" value="Регистрация">
             </form>

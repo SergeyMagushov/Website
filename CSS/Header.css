@@ -117,7 +117,7 @@ header nav ul li a:hover,
     position: absolute;   
     top: calc(100%); 
     right: 0;     /* Выравнивание по правому краю, чтобы не вылезало за экран */
-    width: 16vw;     /* Немного увеличили ширину, чтобы стандартный плеер смотрелся аккуратно */
+    width: 16vw; 
     height: 45vh;        
     overflow-y: auto;    
     overflow-x: hidden;   

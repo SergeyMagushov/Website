@@ -70,12 +70,12 @@ function auth_info()
 
     $user = $_SESSION['login'];
     // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
-    $sql = "SELECT login, password, email, time FROM Users WHERE login = '$user'";
+    $sql = "SELECT login, password, email, time, avatar FROM Users WHERE login = '$user'";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
-            // Делаем вывод пароля скрытым
+            // Делаем вывод логина скрытым
             echo "<strong>" . "Логин: " . "</strong>";
             echo "<details style='display: inline-block; cursor: pointer;'>";
             echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать логин</summary>";
@@ -91,7 +91,7 @@ function auth_info()
             echo "</details>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
 
-            // Делаем вывод пароля скрытым
+            // Делаем вывод электронной почты скрытым
             echo "<strong>" . "E-mail: " . "</strong>";
             echo "<details style='display: inline-block; cursor: pointer;'>";
             echo "<summary style='color: solid grey; text-decoration: none; font-size: 0.9em;'>Показать E-mail</summary>";
@@ -110,6 +110,11 @@ function auth_info()
             } else {
                 echo $time . " мин.";
             }
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
+
+            // Вывод картинки
+            echo "<strong>" . "Аватарка: " . "</strong>" . "<img src='" . htmlspecialchars($row['avatar']) . 
+            "' style='width: 50px; height: 50px; object-fit: cover; border-radius: 50%'>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
         }
     } else {

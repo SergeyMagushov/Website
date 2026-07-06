@@ -18,7 +18,7 @@ html {
 
 .container_register {
   width: 22vw;
-  height: 65vh;
+  height: 67vh;
   margin-bottom: 6vh;
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
@@ -47,11 +47,38 @@ input[type="email"] {
   font-size: clamp(14px, 1vw, 20px);
   width: 18vw;
   height: 4vh;
-  margin-top: 1vh;
+  /* margin-top: 1vh; */
   display: block;
   border: 3px solid grey;
   border-radius: 5px;
   box-sizing: border-box;
+}
+
+/* Скрываем кнопку загрузки файла */
+.file-upload-label input[type="file"] {
+  display: none;
+}
+
+/* Превращаем кнопку выбора картинки в обычную строку, как и у других данных */
+.file-upload-label {
+  font-size: clamp(14px, 1vw, 20px);
+  width: 18vw;
+  height: 4vh;
+  /* margin-top: 1vh; */
+  display: flex;
+  align-items: center;
+  border: 3px solid grey;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: white;
+  cursor: pointer;
+  padding-left: 2px;
+  color: #757575;
+  user-select: none;
+}
+
+.file-upload-label span {
+  text-align: left;
 }
 
 .message {

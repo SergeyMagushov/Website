@@ -32,7 +32,7 @@ html {
   height: 65vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 2vh 1.5vw; /* Отступы внутри, чтобы текст не перекрывался закругленной рамкой формы */
+  padding: 0vh 1.5vw; /* Отступы внутри, чтобы текст не перекрывался закругленной рамкой формы */
   box-sizing: border-box; 
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
@@ -65,19 +65,19 @@ html {
 
 .clicker {
   width: 21vw;
-  height: 14vh;
+  height: 12vh;
   user-select: none;  /* Запрет выделения текста при частых кликах */
   background-color: rgba(255, 255, 255, 0.85); 
   backdrop-filter: blur(10px);
   border: 5px solid rgba(0, 171, 74);
   border-radius: 24px;
-  padding: 2vh 2vw;
+  padding: 0vh 2vw;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .auth {
   width: 21vw;
-  height: 48vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Элементы начинают идти сверху */
@@ -86,7 +86,7 @@ html {
   backdrop-filter: blur(10px);
   border: 5px solid rgba(0, 171, 74);
   border-radius: 24px;
-  padding: 2vh 2vw;
+  padding: 0vh 2vw;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   box-sizing: border-box; /* Гарантирует, что padding не раздует высоту больше 40vh */
 }
@@ -94,7 +94,7 @@ html {
 /* Делаем, чтобы кнопка внутри контейнера auth находилась снизу */
 .auth input[type="submit"] {
   margin-top: auto; /* /Перемещение кнопки в низ контейнера*/
-  margin-bottom: 0; 
+  margin-bottom: 2vh; 
 }
 
 input[type="submit"] {

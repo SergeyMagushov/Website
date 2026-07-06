@@ -46,7 +46,7 @@
             <!-- Отдельный пунк меню, который показывается, когда пользователь авторизовался -->
             <?php if (isset($_SESSION['login'])): ?>
                 <div class="music-dropdown">
-                    <a href="#" class="music-toggle" onclick="return false;">Музыка ▼</a>
+                    <a href="#" class="music-toggle" onclick="return false;">Музыка</a>
                     <ul class="music-menu">
                         <!-- Встроенный аудиоплеер в начале списка -->
                         <li class="player-wrapper">
