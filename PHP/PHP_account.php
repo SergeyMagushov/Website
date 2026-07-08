@@ -112,10 +112,11 @@ function auth_info()
             }
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
 
-            // Вывод картинки
-            echo "<strong>" . "Аватарка: " . "</strong>" . "<img src='" . htmlspecialchars($row['avatar']) . 
-            "' style='width: 50px; height: 50px; object-fit: cover; border-radius: 50%'>";
-            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
+            // Вывод картинки с правильным синтаксисом PHP
+            echo '<strong>Аватарка: </strong>';
+            echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Аватар">';
+            echo '<hr>'; // вывод разделительной линии
+
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";

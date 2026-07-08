@@ -23,8 +23,9 @@ if (isset($_POST['button_auth'])) {
     
     $login = $_POST['login'];
     $password = $_POST['password'];
+    $avatar = $_POST['avatar']; // создаем переменную для дальнейшей записи данных о картинке в сессию и вывод ее в Header
     // SQL запрос для провперки логина и пароли с таблице Users
-    $sql = "SELECT id, login, password FROM Users WHERE login='$login' AND password='$password'";
+    $sql = "SELECT login, password, avatar FROM Users WHERE login='$login' AND password='$password'";
     $result = mysqli_query($connection, $sql);
     // Если есть совпаденгия
     if (mysqli_num_rows($result) === 1) {
@@ -33,8 +34,9 @@ if (isset($_POST['button_auth'])) {
         // необходимо сделать через Session, так как таким образом происходит длительность у текста оповещения. Просто через $reg0 удалится почти сразу
         $row = mysqli_fetch_assoc($result);
         // if ($row['login'] === $login && $row['password'] === $password) {
-        $_SESSION['user_id'] = $row['id'];
+        // $_SESSION['user_id'] = $row['id'];
         $_SESSION['login'] = $row['login'];
+        $_SESSION['avatar'] = $row['avatar']; // запись данных о картинке в сессию и дальнейший вывод ее в Header
         header("Location: ../HTML/Feedback.php"); // Перенаправление на нужную страницу при авторизации
         exit();
         // }
