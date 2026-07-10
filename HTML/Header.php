@@ -23,13 +23,8 @@
                     <li><a href="Playthroughs.php">Прохождения</a></li>
                     <li><a href="Gallery.php">Галерея</a></li>
                     <li><a href="Worlds.php">Скачать миры</a></li>
-                    <li><a href="Feedback.php">Отзывы</a></li>
-
-                    <!-- Отдельный пунк меню, который показывается, когда пользователь авторизовался -->
-                    <?php if (isset($_SESSION['login'])): ?>
-                        <!-- Видно только авторизованным -->
-                        <li><a href="Clicker.php">Мини-игра</a></li>
-                    <?php endif; ?>
+                    <li><a href="Feedback.php">Отзывы</a></li>                   
+                    <li><a href="Clicker.php">Мини-игра</a></li>
 
                     <!-- Отдельный пунк меню, который показывается, когда пользователь авторизовался -->
                     <?php if (isset($_SESSION['login'])): ?>

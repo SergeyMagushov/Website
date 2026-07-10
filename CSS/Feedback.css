@@ -33,7 +33,7 @@ html {
   animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
 }
 
-/* Стилизация ползунка, чтобы он тоже был скруглённым и аккуратным */
+/* Стилизация ползунка, чтобы он был скруглённым */
 .scrollable-box::-webkit-scrollbar {
   width: 8px;
 }
@@ -77,8 +77,6 @@ html {
 }
 
 .container_feedback h1,
-.container_feedback h2,
-.container_feedback h3,
 .container_feedback .form-title {
   text-align: center;
 }
@@ -96,7 +94,6 @@ input[type="date"] {
   border-radius: 5px;
   box-sizing: border-box;
 }
-
 
 input[type="submit"] {
   width: 10vw;

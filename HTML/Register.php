@@ -59,20 +59,25 @@
         <div class="container_register">
             <h1 class="auth-title" style="color: grey">Регистрация</h1>
             <form method="POST" action="" enctype="multipart/form-data">
-                Логин: <input type="text" name="login" minlength="8" placeholder="Минимум 8 символов" required><br>
+                Логин: <input type="text" name="login" minlength="8" maxlength="25" placeholder="От 8 до 25 символов" required><br>
                 Пароль: <input type="password" name="password" minlength="8" placeholder="Минимум 8 символов"
                     required><br>
                 Повторите пароль: <input type="password" name="password1" placeholder="Должен совпадать с паролем"
                     required><br>
-                Email: <input type="email" name="email" required><br>
+                Email: <input type="email" name="email" placeholder="Только российская почта" required><br>
                 Аватар:
                 <label class="file-upload-label">
-                    <span id="file-name-text">Выберите файл...</span>
+                    <span id="file-name-text">Выберите файл (необязательно)</span>
                     <input type="file" name="avatar" id="avatar-input" accept="image/*"
                         onchange="document.getElementById('file-name-text').innerText = this.files[0] ? this.files[0].name : 'Выберите файл...'">
                 </label>
                 Согласие на обработку персональных данных: <input type="checkbox" name="personal" required><br>
-                <input type="submit" name="button_reg" value="Регистрация">
+                <nav>
+                    <ul>
+                        <li><a href="Auth.php">Есть аккаунт</a></li>
+                    </ul>
+                </nav>
+                <input type="submit" name="button_reg" value="Регистрация">                
             </form>
         </div>
     </div>

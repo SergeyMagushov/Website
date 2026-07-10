@@ -141,7 +141,7 @@
             <!-- Этот блок виден ТОЛЬКО авторизованным пользователям -->
             <div class="container_feedback">
                 <h1 class="auth-title" style="color: grey">Оставить отзыв</h1>
-                <form action="" method="POST" class="feedback">                    
+                <form action="" method="POST" class="feedback">
                     Оценка видосам: <input type="number" min="0" max="10" name="rating" placeholder="От 1 до 10"
                         required><br>
                     Комментарий: <input type="text" name="text" minlength="10" maxlength="3000"

@@ -18,7 +18,7 @@ html {
 
 .container_register {
   width: 22vw;
-  height: 67vh;
+  height: 69vh;
   margin-bottom: 6vh;
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
@@ -102,8 +102,15 @@ input[type="submit"] {
   text-align: center;
 }
 
+
 input[type="submit"]:hover {
   background-color: rgb(255, 136, 0);
+}
+
+.container_register nav ul li a {
+  color: #333;
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 
 /* Описываем саму анимацию */
