@@ -1,6 +1,5 @@
 <?php session_start(); ?>
 <?php require('Header.php'); ?>
-<?php require('Footer.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,6 +167,8 @@
                         <div class="dots" id="dotsContainer4"></div>
                 </div>
         </div>
+
+        <?php require('Footer.php'); ?>
 </body>
 <script src="../Java Script/Playthroughs.js"></script>
 

@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php require('Header.php'); ?>
 <?php require('../PHP/PHP_clicker.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
@@ -12,7 +13,6 @@
 </head>
 
 <body>
-    <?php require('Header.php'); ?>
     <!-- Вывод сообщения о записи счета -->
     <?php if (!empty($message_score_success)): ?>
         <div id="errorModal" style="

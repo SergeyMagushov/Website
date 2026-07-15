@@ -1,7 +1,5 @@
 <?php session_start(); ?>
 <?php require('Header.php'); ?>
-<?php require('Footer.php'); ?>
-<?php require('../PHP/PHP_auth.php'); ?>
 <?php require('../PHP/PHP_account.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
 
@@ -73,7 +71,14 @@
                 <input type="submit" value="Выйти" onclick="window.location.href='../PHP/PHP_QuitAuth.php'; return false;">
             </div>           
         </div>
+
+        <div class="top-users">
+            <h1 class="auth-title" style="color: grey">Топ-время</h1>
+            <?php top_users_info(); ?>
+        </div>
     </div>
+
+    <?php require('Footer.php'); ?>
 </body>
 
 </html>

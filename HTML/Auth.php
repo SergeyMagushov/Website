@@ -1,6 +1,5 @@
 <?php session_start(); ?>
 <?php require('Header.php'); ?>
-<?php require('Footer.php'); ?>
 <?php require('../PHP/PHP_auth.php'); ?>
 <?php require('../PHP/PHP_register.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
@@ -154,6 +153,8 @@
             </form>
         </div>
     </div>
+
+    <?php require('Footer.php'); ?>
 </body>
 
 </html>

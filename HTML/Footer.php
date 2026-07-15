@@ -15,7 +15,7 @@
                 <i class="GGGAME" id="GGGAME"></i>
             </div>
             <nav>
-                <ul>
+                <ul>  
                     <li><a href="https://vk.com/video-1980_456246417">Справочная информация</a></li>
                     <li><a href="https://vk.com/id312744639">Страница ВК</a></li>
                     <li><a href="https://vk.com/gggame_channel">Группа ВК</a></li>

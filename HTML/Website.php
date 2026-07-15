@@ -1,6 +1,5 @@
 <?php session_start(); ?>
 <?php require('Header.php'); ?>
-<?php require('Footer.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
 <!DOCTYPE html>
@@ -89,6 +88,9 @@
     <!-- <div class="instructions">
             <p>Наведите курсор на любую карточку, чтобы увидеть обратную сторону с дополнительной информацией</p>
     </div> -->
+
+    
+<?php require('Footer.php'); ?>
 </body>
 
 </html>

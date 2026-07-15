@@ -26,7 +26,7 @@ function feedback_info()
     global $connection;
 
     $user = $_SESSION['login'];
-    // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
+    // Сортировка данных из таблицы Feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
     $sql = "SELECT name, rating, text FROM Feedback WHERE name = '$user' ORDER BY date DESC";
     $result = mysqli_query($connection, $sql);
 
@@ -48,7 +48,7 @@ function clicker_info()
     global $connection;
 
     $user = $_SESSION['login'];
-    // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
+    // Сортировка данных из таблицы Leaderboard по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
     $sql = "SELECT player, score FROM Leaderboard WHERE player = '$user'";
     $result = mysqli_query($connection, $sql);
 
@@ -69,7 +69,7 @@ function auth_info()
     global $connection;
 
     $user = $_SESSION['login'];
-    // Сортировка данных из таблицы feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
+    // Сортировка данных из таблицы Users по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
     $sql = "SELECT login, password, email, time, avatar FROM Users WHERE login = '$user'";
     $result = mysqli_query($connection, $sql);
 
@@ -117,6 +117,42 @@ function auth_info()
             echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;" alt="Аватар">';
             echo '<hr>'; // вывод разделительной линии
 
+        }
+    } else {
+        $message_account_fail = "Ошибка соединения" . "<br>";
+    }
+}
+
+    function top_users_info()
+{
+    // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
+    global $connection;
+
+    $user = $_SESSION['login'];
+    // Сортировка данных из таблицы Login по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
+    $sql = "SELECT login, time, avatar FROM Users ORDER BY time DESC LIMIT 15;";
+    $result = mysqli_query($connection, $sql);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
+            
+            // Вывод картинки с правильным синтаксисом PHP
+            echo '<strong> Аватарка: </strong>';
+            echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="Аватар">' . "<br>";
+           
+            // Делаем вывод времени, проведенного на сайте
+            $time = round((int) $row['time'] / 60); // Записываем в переменную время в минутах и округляем до 0 знаков после запятой
+            echo "<strong>" . "Время на сайте: " . "</strong>";
+            // Если больше или равно 60 минут - это уже час и больше, выводим отдельно и часы, и минуты. Если меньше выводим минуты из переменной $time
+            if ($time >= 60) {
+                $hours = round($time / 60);
+                $minutes = $time % 60; // Минуты считаются, как отсаток от деления. Например, всего 620 минут. Это 620 / 60 - остаток 20, это минуты
+                echo $hours . " ч. " . $minutes . " мин.";
+            } else {
+                echo $time . " мин.";
+            }
+            echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";
