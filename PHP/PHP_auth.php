@@ -23,9 +23,11 @@ if (isset($_POST['button_auth'])) {
     
     $login = $_POST['login'];
     $password = $_POST['password'];
-    $avatar = $_POST['avatar']; // создаем переменную для дальнейшей записи данных о картинке в сессию и вывод ее в Header
+    $avatar = $_POST['avatar']; // создаем переменную для дальнейшей записи данных о картинке в сессию и выводе ее в Header
+    $id = $_POST['id']; // создаем переменную для дальнейшей записи данных об id и задействования в необходимых случаях
+
     // SQL запрос для провперки логина и пароли с таблице Users
-    $sql = "SELECT login, password, avatar FROM Users WHERE login='$login' AND password='$password'";
+    $sql = "SELECT id, login, password, avatar FROM Users WHERE login='$login' AND password='$password'";
     $result = mysqli_query($connection, $sql);
     // Если есть совпаденгия
     if (mysqli_num_rows($result) === 1) {
@@ -37,6 +39,7 @@ if (isset($_POST['button_auth'])) {
         // $_SESSION['user_id'] = $row['id'];
         $_SESSION['login'] = $row['login'];
         $_SESSION['avatar'] = $row['avatar']; // запись данных о картинке в сессию и дальнейший вывод ее в Header
+        $_SESSION['id'] = $row['id']; // запись данных об id в сессии для дальнейшего задействования в необходимых случаях
         header("Location: ../HTML/Feedback.php"); // Перенаправление на нужную страницу при авторизации
         exit();
         // }

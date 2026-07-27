@@ -9,10 +9,11 @@ html {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 2vw;
+    gap: 3vw; /* Немного увеличил расстояние между карточками для «воздуха» */
     /* background-image: url("../Images/Backgrounds/Website.jpeg"); */
     background-image: url("../Images/Gallery/gggame-гггейм.gif");
     background-size: cover;
+    background-position: center; /* Центрирование фонового GIF */
     padding: 2vh 1vw;
     box-sizing: border-box;
 }
@@ -20,10 +21,16 @@ html {
 .card {
     width: 20vw;
     height: 20vw;
-    perspective: 1000px;
+    perspective: 1500px; /* Увеличил глубину 3D-пространства для реалистичного переворота */
     cursor: pointer;
     margin: 1vh 1vw;
     margin-bottom: 6vh;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Плавное масштабирование при наведении */
+}
+
+/* Эффект легкого приближения всей карточки к экрану при наведении */
+.card:hover {
+    transform: scale(1.03);
 }
 
 .card-inner {
@@ -31,7 +38,7 @@ html {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 0.8s cubic-bezier(0.54, 1.56, 0.64, 1); /* Фирменный пружинящий переворот */
     transform-style: preserve-3d;
 }
 
@@ -49,46 +56,66 @@ html {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 16px;
-    border: 3px solid white;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 24px; /* Более мягкие, современные скругления углов */
+    border: 3px solid #ffffff; /* Исправлено: строго сплошная белая обводка для всех сторон */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25), 0 5px 15px rgba(0, 0, 0, 0.2); /* Сложная двухслойная тень для объема */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2vh 1vw;
+    padding: 3vh 2vw; /* Больше внутренних отступов для текста */
+    box-sizing: border-box;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Усиление объема рамки и тени при наведении на карточку */
+.card:hover .card-front,
+.card:hover .card-front1,
+.card:hover .card-front2,
+.card:hover .card-front3,
+.card:hover .card-back {
+    border-color: #ffffff; /* Сохраняем белый цвет обводки при наведении */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .card-front {
-    background: white;
+    background: #1e1e1e; /* Темная подложка на случай долгой загрузки картинок */
     color: #333;
     background-image: url("../Images/Channels cards/GGGAME!!!!!.png");
     background-size: cover;
+    background-position: center;
 }
 
 .card-front1 {
-    background: white;
+    background: #1e1e1e;
     color: #333;
     background-image: url("../Images/Channels cards/Serega.jfif");
     background-size: cover;
+    background-position: center;
 }
 
 .card-front2 {
-    background: white;
+    background: #1e1e1e;
     color: #333;
     background-image: url("../Images/Channels cards/Skotobazina - Smite videos.png");
     background-size: cover;
+    background-position: center;
 }
 
 .card-front3 {
-    background: white;
+    background: #1e1e1e;
     color: #333;
     background-image: url("../Images/Channels cards/Хайлайты GGGAME.jfif");
     background-size: cover;
+    background-position: center;
 }
 
+/* Матовое зеленое стекло с эффектом глубокого размытия фона */
 .card-back {
-    background: rgba(0, 171, 74);
+    background: linear-gradient(135deg, rgba(0, 171, 74, 0.75), rgba(0, 90, 40, 0.85));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.3); /* Внутреннее свечение стекла */
     color: white;
     transform: rotateY(180deg);
 }
@@ -101,53 +128,79 @@ html {
 }
 
 .card-title {
-    font-size: clamp(18px, 1.5vw, 26px);
-    font-weight: 700;
-    margin-bottom: 1vh;
+    font-size: clamp(16px, 1.3vw, 22px); /* Слегка уменьшил базовый размер для лучшего баланса */
+    font-weight: 600; /* Исправлено: уменьшена степень жирности, заголовки теперь аккуратнее */
+    letter-spacing: -0.3px; /* Мягкий межбуквенный интервал */
+    margin-bottom: 2vh;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Читаемость заголовка на любом фоне */
 }
 
 .card-description {
-    font-size: clamp(14px, 1vw, 18px);
-    line-height: 1.4;
+    font-size: clamp(12px, 0.9vw, 15px); /* Тонкая подстройка размера шрифта для вместимости */
+    line-height: 1.5; /* Идеальный интервал для чтения текста */
     max-height: 12vh;
-    overflow: hidden;
+    overflow-y: auto; /* Исправлено: если текст длинный (как на 4-й карточке), появится аккуратный внутренний скролл */
+    opacity: 0.95; /* Легкое смягчение белого цвета текста */
+    padding: 0 0.5vw;
+}
+
+/* Настройки красивого тонкого скроллбара для длинных описаний, чтобы не ломать визуал */
+.card-description::-webkit-scrollbar {
+    width: 4px;
+}
+.card-description::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
 }
 
 .card-back .card-description {
-    margin-bottom: 1vh;
+    margin-bottom: 3vh;
 }
 
+/* Интерактивная кнопка-капсула */
 .btn {
-    background: white;
-    color: rgba(0, 171, 74);
+    background: #ffffff;
+    color: #00ab4a;
     border: none;
-    padding: 1vh 1vw;
+    padding: 1.4vh 2.2vw;
     border-radius: 50px;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase; /* Элемент премиального дизайна кнопок */
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: clamp(12px, 0.8vw, 14px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: clamp(11px, 0.75vw, 13px);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.4); /* Внешний световой блик */
+    background: #ffffff;
+    color: #00cd59; /* Мягкая смена цвета при наведении */
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .card:nth-child(2) .card-back {
-    background: rgba(0, 171, 74);
+    background: linear-gradient(135deg, rgba(0, 171, 74, 0.75), rgba(0, 90, 40, 0.85));
 }
 
 .card:nth-child(2) .btn {
-    color: rgba(0, 171, 74);
+    color: #00ab4a;
 }
 
 .card:nth-child(3) .card-back {
-    background: rgba(0, 171, 74);
+    background: linear-gradient(135deg, rgba(0, 171, 74, 0.75), rgba(0, 90, 40, 0.85));
 }
 
 .card:nth-child(3) .btn {
-    color: rgba(0, 171, 74);
+    color: #00ab4a;
 }
 
 .instructions {
@@ -155,8 +208,11 @@ html {
     margin-top: 3vh;
     font-size: clamp(14px, 1vw, 16px);
     background: rgba(255, 255, 255, 0.1);
-    padding: 1vh 1vw;
-    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 1.5vh 2vw;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     max-width: 26vw;
     margin-left: auto;
     margin-right: auto;
@@ -168,7 +224,6 @@ html {
         grid-template-columns: 1fr 2fr;
     }    
 }
-
 
 @media (min-width: 992px) {
     .cards-container {

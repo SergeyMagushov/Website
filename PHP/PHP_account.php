@@ -25,9 +25,9 @@ function feedback_info()
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
-    $user = $_SESSION['login'];
+    $user_id = $_SESSION['id'];
     // Сортировка данных из таблицы Feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
-    $sql = "SELECT name, rating, text FROM Feedback WHERE name = '$user' ORDER BY date DESC";
+    $sql = "SELECT user_id, rating, text FROM Feedback WHERE user_id = $user_id ORDER BY date DESC";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
@@ -47,9 +47,9 @@ function clicker_info()
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
-    $user = $_SESSION['login'];
+    $user_id = $_SESSION['id'];
     // Сортировка данных из таблицы Leaderboard по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
-    $sql = "SELECT player, score FROM Leaderboard WHERE player = '$user'";
+    $sql = "SELECT user_id, score FROM Leaderboard WHERE user_id = $user_id";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
@@ -68,7 +68,7 @@ function auth_info()
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
-    $user = $_SESSION['login'];
+    $user = $_SESSION['login']; // Так как в этом модуле выводятся только данные из таблицы пользователей, то можно использовать login
     // Сортировка данных из таблицы Users по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
     $sql = "SELECT login, password, email, time, avatar FROM Users WHERE login = '$user'";
     $result = mysqli_query($connection, $sql);

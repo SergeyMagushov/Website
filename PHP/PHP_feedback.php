@@ -23,8 +23,8 @@ if (isset($_POST['button_feedback'])) { // Обозначаем, что все, 
     $message_feedback_success = "";
     $message_feedback_fail = "";
 
-    // Логин не считывается с поля ввода, так как поля ввода нет. Считывание происходит из сессии    
-    $name = $_SESSION['login']; 
+    // ID не считывается с поля ввода, так как поля ввода нет. Считывание происходит из сессии    
+    $user_id = $_SESSION['id']; 
     // Задаем переменные для поля ввода и "связываем" его с name поля в html  
     $rating = htmlspecialchars($_POST['rating']);
     $text = htmlspecialchars($_POST['text']);
@@ -36,7 +36,7 @@ if (isset($_POST['button_feedback'])) { // Обозначаем, что все, 
     // $row = mysqli_fetch_assoc($result0);
     // if ($row['login'] === $name && $row['email'] === $email) {
         // Записываем данные созданных переменных (данные из полей) в соответствующее поля подключенной таблицы БД     
-        $sql = "INSERT INTO `Feedback` (`name`, `rating`, `text`, `date`) VALUES ('$name', '$rating','$text','$date')"; // Определяем поле и переменную
+        $sql = "INSERT INTO Feedback (user_id, rating, text, date) VALUES ($user_id, $rating, '$text', '$date')"; // Определяем поле и переменную
         $sql1 = $connection->prepare($sql);
         if ($sql1->execute()) {
             $message_feedback_success = "Ваш отзыв добавлен" . "<br>";
@@ -57,14 +57,18 @@ function feedback_publish()
     // Переменная connection уже была инициализирована раннее, но внутри функции ее не видно, поэтому надо дописать global
     global $connection;
 
-    // Сортировка данных из таблицы feedback по убыванию
-    $sql = "SELECT name, rating, text, date FROM Feedback ORDER BY date DESC";
+    // Сортировка данных из таблицы Feedback совмещенной с таблице Users по убыванию
+    $sql = "SELECT Feedback.rating, Feedback.text, Feedback.date, Users.login, Users.avatar FROM Feedback INNER JOIN Users ON Feedback.user_id = Users.id ORDER BY Feedback.date DESC";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
         // Цикл вывода данных
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo "<strong>" . "Никнейм: " . "</strong>" . htmlspecialchars($row['name']) . "<br>";
+        while ($row = mysqli_fetch_assoc($result)) {            
+            echo "<strong>" . "Никнейм: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
+
+            echo '<strong> Аватарка: </strong>';
+            echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="Аватар">' . "<br>";
+            
             echo "<strong>" . "Оценка: " . "</strong>" . (int) $row['rating'] . "/10" . "<br>";
             echo "<strong>" . "Начало просмотра: " . "</strong>" . $row['date'] . "<br>";
             echo "<strong>" . "Комментарий: " . "</strong>" . (htmlspecialchars($row['text']));

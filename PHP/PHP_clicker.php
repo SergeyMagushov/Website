@@ -19,13 +19,13 @@ if (isset($_POST['button_score'])) { // Обозначаем, что все, ч�
     $message_score_success = "";
     $message_score_fail = ""; 
 
-    // Логин не считывается с поля ввода, так как поля ввода нет. Считывание происходит из сессии      
-    $player = $_SESSION['login'];
+    // ID не считывается с поля ввода, так как поля ввода нет. Считывание происходит из сессии    
+    $user_id = $_SESSION['id']; 
     // Задаем переменную для поля ввода и "связываем" его с name поля в html
     $score = htmlspecialchars($_POST['score']);
 
     // Проверяем, есть ли результат данного пользователя в таблице
-    $check_sql = "SELECT `score` FROM `Leaderboard` WHERE `player` = '$player'";
+    $check_sql = "SELECT score FROM Leaderboard WHERE user_id = $user_id";
     $check_result = mysqli_query($connection, $check_sql);
 
     if ($check_result && mysqli_num_rows($check_result) > 0) {
@@ -35,7 +35,7 @@ if (isset($_POST['button_score'])) { // Обозначаем, что все, ч�
 
         // Если новый результат больше старого, обновляем его
         if ($score > $old_score) {
-            $sql = "UPDATE `Leaderboard` SET `score` = '$score' WHERE `player` = '$player'";
+            $sql = "UPDATE Leaderboard SET score = $score WHERE user_id = $user_id";
             $sql1 = $connection->prepare($sql);
 
             if ($sql1) {
@@ -53,7 +53,7 @@ if (isset($_POST['button_score'])) { // Обозначаем, что все, ч�
     } else {
         // Для первого результата пользователя
         // Записываем данные созданных переменных (данные из полей) в соответствующее поля подключенной таблицы БД   
-        $sql = "INSERT INTO `Leaderboard` (`player`, `score`) VALUES ('$player', '$score')";
+        $sql = "INSERT INTO Leaderboard (user_id, score) VALUES ($user_id, $score)";
         $sql1 = $connection->prepare($sql);
 
         if ($sql1) {
@@ -75,13 +75,16 @@ function score_publish()
     global $connection;
 
     // Сортировка данных из таблицы feedback под убыванию дат комментариев
-    $sql = "SELECT player, score FROM Leaderboard ORDER BY score DESC LIMIT 15;";
+    $sql = "SELECT Leaderboard.score, Users.login, Users.avatar FROM Leaderboard INNER JOIN Users ON Leaderboard.user_id = Users.id ORDER BY score DESC LIMIT 15;";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<strong>" . "Результат: " . "</strong>" . (int) $row['score'] . "<br>";
-            echo "<strong>" . "Никнейм: " . "</strong>" . htmlspecialchars($row['player']) . "<br>";
+            echo "<strong>" . "Никнейм: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
+
+            echo '<strong> Аватарка: </strong>';
+            echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="Аватар">' . "<br>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного результата от другого
         }
     }
