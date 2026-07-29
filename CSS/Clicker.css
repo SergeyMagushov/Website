@@ -198,6 +198,42 @@ input[type="submit"]:hover {
   color: white;
 }
 
+
+.milestone-achievement {
+    position: absolute;
+    pointer-events: none; 
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 3vw, 45px); 
+    color: rgba(0, 171, 74, 0.8);
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.6), 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    text-align: center;
+    white-space: nowrap;
+    z-index: 1001; 
+    animation: milestoneFloat 1.5s ease-out forwards; 
+}
+
+/* Описываем саму анимацию */
+@keyframes milestoneFloat {
+    0% {
+        transform: translate(-50%, -50%) translateY(0) scale(0.5);
+        opacity: 0;
+    }
+    15% {
+        transform: translate(-50%, -50%) translateY(-2vh) scale(1.2); /* Резкое появление и увеличение */
+        opacity: 1;
+    }
+    30% {
+        transform: translate(-50%, -50%) translateY(-3vh) scale(1); /* Легкое проседание в нормальный размер */
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(-12vh) scale(0.9); /* Плавный улет вверх и растворение */
+        opacity: 0;
+    }
+}
+
+
 /* Описываем саму анимацию */
 @keyframes fadeIn {
   from {

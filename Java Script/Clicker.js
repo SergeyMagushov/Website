@@ -2,6 +2,7 @@
 let count = 0; //Счетчик общего количества кликов
 let currentCount = 1; //Счетчик прибавки при ручном нажатии 
 let currentCount1 = 1; //Счетчик авто-прибавки
+let achievedMilestones = []; //Переменная для отслеживания промежуточных результатов для работы функционала достижений 9ачивок)
 
 // Связываемв которые надо выводить новые данные - это сообщения о текущем счете, прибавки при ручном и автокликах и счет > или < 0
 const scoreDisplay = document.getElementById('score'); // Вывод информации об общем количестве нажатий
@@ -36,6 +37,9 @@ setInterval(() => {
     // Записываем получившееся значение в экран счетчика количества кликов
     scoreDisplay.innerText = count;
 
+    // Проверяем, выполнено ли условие достижения во время автоклика
+    checkAndShowMilestone(count);
+
     // Получение координат основной кнопки клика
     const rect = button.getBoundingClientRect();
 
@@ -64,6 +68,9 @@ button.addEventListener('click', (event) => {
     // Берем элемент scoreDisplay и записываем в него новое значение count
     // innerText меняет только текст внутри тега <span>
     scoreDisplay.innerText = count;
+
+    // Проверяем, выполнено ли условие достижения во время автоклика
+    checkAndShowMilestone(count);
 
     // Функция, которая создает вылетающую зеленую цифру в месте клика мыши
     createFloatingNumber(event.clientX, event.clientY, `+${currentCount}`, '#00ab4a');
@@ -316,5 +323,50 @@ function updateHiddenField() {
     const scoreInput = document.getElementById('hidden_score');    
     // 3. Копируем текст из span в значение скрытого поля
     scoreInput.value = scoreSpan.innerText;
+}
+
+// Функция для вывода сообщения о достижении определенного количества счета (достижение)
+function checkAndShowMilestone(currentScore) {
+    // Переменная для обозначения шага условия достижения, чтобы каждые 5 000 выдавалось достижение
+    let milestoneStep = 5000;
+    
+    // Находим ближайший пройденный рубеж (например, если счет 5100, то рубеж — 5000)
+    let currentMilestone = Math.floor(currentScore / milestoneStep) * milestoneStep;
+
+    // Проверяем: если рубеж больше нуля, игрок его перешагнул и мы ЕЩЕ НЕ показывали анимацию для этого числа
+    if (currentMilestone > 0 && !achievedMilestones.includes(currentMilestone)) {
+        
+        // Добавляем этот рубеж в список достигнутых, чтобы анимация не спамила при каждом следующем клике
+        achievedMilestones.push(currentMilestone);
+
+        // Создаем виртуальный тег div для текста достижения
+        const milestoneDiv = document.createElement('div');
+
+        // Присваиваем ему специальный класс анимации, который мы написали в CSS
+        milestoneDiv.className = 'milestone-achievement';
+
+        // Формируем красивый текст (например: 5000 ОЧКОВ!)
+        milestoneDiv.innerText = `🎉 ${currentMilestone} ОЧКОВ! 🎉`;
+
+        // Получение координат основной кнопки клика (печенья)
+        const rect = button.getBoundingClientRect();
+
+        // Координаты центра печенья с учетом прокрутки страницы
+        const cookieX = rect.left + window.scrollX + (rect.width / 2);
+        // Смещаем координату Y чуть выше центра печенья (на 20 пикселей), чтобы текст вылетал прямо над ним
+        const cookieY = rect.top + window.scrollY + (rect.height / 2) - 20;
+
+        // Устанавливаем координаты появления ровно над печеньем
+        milestoneDiv.style.left = cookieX + 'px';
+        milestoneDiv.style.top = cookieY + 'px';
+
+        // Добавляем созданный элемент на страницу
+        document.body.appendChild(milestoneDiv);
+
+        // Через 1500 миллисекунд (когда золотая анимация полностью завершится) удаляем элемент из памяти
+        setTimeout(() => {
+            milestoneDiv.remove();
+        }, 1500);
+    }
 }
 
