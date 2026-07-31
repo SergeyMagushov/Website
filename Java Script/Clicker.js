@@ -2,7 +2,7 @@
 let count = 0; //Счетчик общего количества кликов
 let currentCount = 1; //Счетчик прибавки при ручном нажатии 
 let currentCount1 = 1; //Счетчик авто-прибавки
-let achievedMilestones = []; //Переменная для отслеживания промежуточных результатов для работы функционала достижений 9ачивок)
+let achievedMilestones = []; //Переменная для отслеживания промежуточных результатов для работы функционала достижений (ачивок)
 
 // Связываемв которые надо выводить новые данные - это сообщения о текущем счете, прибавки при ручном и автокликах и счет > или < 0
 const scoreDisplay = document.getElementById('score'); // Вывод информации об общем количестве нажатий
@@ -330,38 +330,26 @@ function checkAndShowMilestone(currentScore) {
     // Переменная для обозначения шага условия достижения, чтобы каждые 5 000 выдавалось достижение
     let milestoneStep = 5000;
     
-    // Находим ближайший пройденный рубеж (например, если счет 5100, то рубеж — 5000)
+    // Находим ближайший пройденное значение (например, если счет 5100, то значение — 5000)
     let currentMilestone = Math.floor(currentScore / milestoneStep) * milestoneStep;
 
-    // Проверяем: если рубеж больше нуля, игрок его перешагнул и мы ЕЩЕ НЕ показывали анимацию для этого числа
-    if (currentMilestone > 0 && !achievedMilestones.includes(currentMilestone)) {
-        
-        // Добавляем этот рубеж в список достигнутых, чтобы анимация не спамила при каждом следующем клике
+    // Если значение больше нуля, оно еще не достигнуто и анимация для этого числа еще не была отображена
+    if (currentMilestone > 0 && !achievedMilestones.includes(currentMilestone)) {        
+        // Сохраняем уже достигнутое оличество очков, чтобы не было повторов
         achievedMilestones.push(currentMilestone);
 
-        // Создаем виртуальный тег div для текста достижения
-        const milestoneDiv = document.createElement('div');
-
-        // Присваиваем ему специальный класс анимации, который мы написали в CSS
-        milestoneDiv.className = 'milestone-achievement';
-
-        // Формируем красивый текст (например: 5000 ОЧКОВ!)
-        milestoneDiv.innerText = `🎉 ${currentMilestone} ОЧКОВ! 🎉`;
-
-        // Получение координат основной кнопки клика (печенья)
-        const rect = button.getBoundingClientRect();
-
-        // Координаты центра печенья с учетом прокрутки страницы
-        const cookieX = rect.left + window.scrollX + (rect.width / 2);
-        // Смещаем координату Y чуть выше центра печенья (на 20 пикселей), чтобы текст вылетал прямо над ним
-        const cookieY = rect.top + window.scrollY + (rect.height / 2) - 20;
-
-        // Устанавливаем координаты появления ровно над печеньем
+        const milestoneDiv = document.createElement('div'); // Создаем виртуальный тег div для текста достижения        
+        milestoneDiv.className = 'milestone-achievement'; // Присваиваем ему специальный класс анимации, который мы написали в CSS        
+        milestoneDiv.innerText = `Вау, ты крутая шкила ! ${currentMilestone} ОЧКОВ!`; // Текст оповещения 
+        
+        const rect = button.getBoundingClientRect();// Получение координат основной кнопки клика (печенья)        
+        const cookieX = rect.left + window.scrollX + (rect.width / 2); // Координаты центра печенья 
+        const cookieY = rect.top + window.scrollY + (rect.height / 2) - 20; // Смещаем координату Y выше центра печенья, чтобы текст был выше
+        // Появление оповещения прямо над печеньем
         milestoneDiv.style.left = cookieX + 'px';
         milestoneDiv.style.top = cookieY + 'px';
-
-        // Добавляем созданный элемент на страницу
-        document.body.appendChild(milestoneDiv);
+        
+        document.body.appendChild(milestoneDiv); // Добавление созданного элемента на страницу
 
         // Через 1500 миллисекунд (когда золотая анимация полностью завершится) удаляем элемент из памяти
         setTimeout(() => {

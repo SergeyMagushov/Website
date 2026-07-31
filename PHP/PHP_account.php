@@ -26,20 +26,56 @@ function feedback_info()
     global $connection;
 
     $user_id = $_SESSION['id'];
-    // Сортировка данных из таблицы Feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя.
-    $sql = "SELECT user_id, rating, text FROM Feedback WHERE user_id = $user_id ORDER BY date DESC";
+    // Сортировка данных из таблицы Feedback по убыванию. Добавлено условие WHERE для выборки только текущего пользователя. Выбираем также id для удаления.
+    $sql = "SELECT id, user_id, rating, text FROM Feedback WHERE user_id = $user_id ORDER BY date DESC";
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
+            // Начало контейнера для строки отзыва с кнопкой удаления по правому краю
+            echo "<div class='comment-row-container'>";
+            
+            // Левый блок с текстом отзыва
+            echo "<div class='comment-text-block'>";
             echo "<strong>" . "Оценка: " . "</strong>" . (int) $row['rating'] . "/10" . "<br>";
             echo "<strong>" . "Комментарий: " . "</strong>" . htmlspecialchars($row['text']);
+            echo "</div>";
+            
+            // Правый блок с формой отправки id комментария для удаления выбранной строки
+            echo "<form action='' method='POST' class='delete-comment-form'>";
+            echo "<input type='hidden' name='delete_comment_id' value='" . $row['id'] . "'>";
+            echo "<input type='submit' name='delete_comment_btn' value='Удалить'>";
+            echo "</form>";
+
+            echo "</div>"; // Конец контейнера для строки отзыва
+            
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одной строки от другой
         }
     } else {
         $message_account_fail = "Ошибка соединения" . "<br>";
     }
 }
+
+
+// Удаляем необходимый комментарий из таблицы отзывов
+if (isset($_POST['delete_comment_btn']) && isset($_POST['delete_comment_id'])) {
+    global $connection;
+    $delete_id = (int)$_POST['delete_comment_id'];
+    $user_id = $_SESSION['id'];
+
+    // Удаление комментария из таблицы Feedback по его id и id текущего пользователя
+    $sql_delete = "DELETE FROM Feedback WHERE id = $delete_id AND user_id = $user_id";
+    mysqli_query($connection, $sql_delete);    
+
+    // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
+    $_SESSION['message_feedback_delete'] = "Комментарий удален";
+
+    // Перезагрузка страницы для обновления списка комментариев
+    header("Location: ../HTML/Account.php"); 
+
+    exit();
+}
+
 
 // Выводим информацию из таблицы рекордов
 function clicker_info()

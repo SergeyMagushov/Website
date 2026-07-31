@@ -213,7 +213,7 @@ input[type="submit"]:hover {
     animation: milestoneFloat 1.5s ease-out forwards; 
 }
 
-/* Описываем саму анимацию */
+/* Анимация достижения определнного счета*/
 @keyframes milestoneFloat {
     0% {
         transform: translate(-50%, -50%) translateY(0) scale(0.5);
@@ -234,7 +234,7 @@ input[type="submit"]:hover {
 }
 
 
-/* Описываем саму анимацию */
+/* Анимация появления элементов при загрузке страницы */
 @keyframes fadeIn {
   from {
     opacity: 0; /* Полностью прозрачный */

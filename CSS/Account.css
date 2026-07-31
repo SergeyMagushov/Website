@@ -44,6 +44,21 @@ html {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
+/* Выравнивание комментария и кнопки удаления комментария */
+.comment-row-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+/* Ограничение ширины текста в контенйре комментариев */
+.comment-text-block {
+  width: 35vw; 
+  word-wrap: break-word; 
+}
+
 /* Стилизация ползунка, чтобы он тоже был скруглённым и аккуратным */
 .feedback::-webkit-scrollbar {
   width: 8px;
@@ -113,6 +128,13 @@ input[type="submit"] {
   margin-top: 1vh;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Кнопка удаления комментариев */
+.delete-comment-form input[type="submit"] {
+  width: 5vw; 
+  height: 3vh;
+  margin: 0;
 }
 
 input[type="submit"]:hover {
