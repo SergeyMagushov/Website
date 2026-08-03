@@ -16,39 +16,55 @@
     <!-- Вывод сообщения о записи счета -->
     <?php if (!empty($message_score_success)): ?>
         <div id="errorModal" style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999;
-        ">
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999;
+    ">
             <div style="
-                background: white;
-                padding: 30px;
-                border-radius: 10px;
-                text-align: center;
-                min-width: 300px;
-                box-shadow: 0 0 20px rgba(0,0,0,0.5);
-                color: #333;
-                position: relative;
-            ">
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 300px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            color: #333;
+            position: relative; /* Важно: позволяет позиционировать крестик относительно этого блока */
+        ">
+                <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                    &times;
+                </span>
+
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Поздравляем</p>
                 <p><?php echo $message_score_success; ?></p>
-                <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
-                    margin-top: 15px;
-                    padding: 8px 25px;
-                    cursor: pointer;
-                    border: 3px solid grey;
-                    border-radius: 5px;
-                ">ОК</button>
+
+                <button class="modal-button" onclick="document.getElementById('errorModal').remove()" style="
+                margin-top: 15px;
+                padding: 8px 25px;
+                cursor: pointer;
+                border: 3px solid grey;
+                border-radius: 5px;
+            ">ОК</button>
             </div>
         </div>
     <?php endif; ?>
+
 
     <!-- Вывод сообщения об ошибке записи счета -->
     <?php if (!empty($message_score_fail)): ?>
@@ -74,8 +90,23 @@
                 color: #333;
                 position: relative;
             ">
+                <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                    &times;
+                </span>
+
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
                 <p><?php echo $message_score_fail; ?></p>
+                
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
                     margin-top: 15px;
                     padding: 8px 25px;
@@ -101,7 +132,10 @@
                     <h1>Один клик: <span id="score1">1</span></h1>
                     <!-- Счетчик авто-прибавки  -->
                     <h1>Авто-клик: <span id="score2">1</span></h1>
-                    <h1><span id="attention"></span></h1>
+
+                    <!-- Поле для вывода сообщения о том, что не хватает средств для приоберетения улучшения. Сейчас не используется -->
+                    <!-- <h1><span id="attention"></span></h1> -->
+
                     <!-- Невидимое поле - Сюда записывается счет -->
                     <input type="hidden" name="score" id="hidden_score" value="0">
                     <!-- Кнопка записи данных в таблицу базы данных -->
@@ -146,7 +180,8 @@
                 </div>
             </div>
         <?php else: ?>
-            <div class="container" style="display: flex; justify-content: center; align-items: center; color: #333; padding: 20px;">
+            <div class="container"
+                style="display: flex; justify-content: center; align-items: center; color: #333; padding: 20px;">
                 <p>Чтобы поиграть в кликер —
                     <a href="Auth.php" style="color: #007bff; text-decoration: underline;">авторизуйтесь</a>.
                 </p>

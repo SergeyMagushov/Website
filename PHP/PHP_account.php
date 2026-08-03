@@ -65,14 +65,14 @@ if (isset($_POST['delete_comment_btn']) && isset($_POST['delete_comment_id'])) {
 
     // Удаление комментария из таблицы Feedback по его id и id текущего пользователя
     $sql_delete = "DELETE FROM Feedback WHERE id = $delete_id AND user_id = $user_id";
-    mysqli_query($connection, $sql_delete);    
-
+    mysqli_query($connection, $sql_delete); 
+    
     // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
     $_SESSION['message_feedback_delete'] = "Комментарий удален";
 
     // Перезагрузка страницы для обновления списка комментариев
-    header("Location: ../HTML/Account.php"); 
-
+    header("Location: ../HTML/Account.php");
+        
     exit();
 }
 

@@ -40,6 +40,21 @@
             color: #333;
             position: relative;
         ">
+
+                <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                    &times;
+                </span>
+
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Внимание</p>
                 <p><?php echo $_SESSION['message_auth_quit']; ?></p>
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
@@ -82,6 +97,21 @@
             color: #333;
             position: relative;
         ">
+
+                <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                    &times;
+                </span>
+
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Поздравляем</p>
                 <p><?php echo $_SESSION['message_register_success']; ?></p>
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
@@ -124,6 +154,21 @@
                 color: #333;
                 position: relative;
             ">
+
+                <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                    &times;
+                </span>
+
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
                 <p><?php echo $message_auth_fail; ?></p>
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="

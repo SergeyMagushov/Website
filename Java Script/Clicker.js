@@ -96,8 +96,9 @@ button1.addEventListener('click', (event) => {
         //Очищаем сообщение "Недостаточно ресурсов" при следующей покупке апгрейда
         error.innerText = "";
     } else {
-        // Если очков меньше 20, выводим предупреждение, и баланс не уходит в минус
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // Если очков меньше 20 - выводится предупреждение, что ресурсов недостаточно
+        // error.innerText = "Недостаточно ресурсов для улучшения"; - изначальный способ, сообщение выводится под основным печеньем
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -114,7 +115,8 @@ button2.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -131,7 +133,8 @@ button3.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -148,7 +151,8 @@ button4.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -165,7 +169,8 @@ button5.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -182,7 +187,8 @@ button6.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -199,7 +205,8 @@ button7.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -216,7 +223,8 @@ button8.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -233,7 +241,8 @@ button9.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -250,7 +259,8 @@ button10.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -267,7 +277,8 @@ button11.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 
@@ -284,7 +295,8 @@ button12.addEventListener('click', (event) => {
 
         error.innerText = "";
     } else {
-        error.innerText = "Недостаточно ресурсов для улучшения";
+        // error.innerText = "Недостаточно ресурсов для улучшения";
+        createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
 

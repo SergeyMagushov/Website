@@ -40,9 +40,24 @@
                 color: #333;
                 position: relative;
             ">
+
+            <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                    &times;
+                </span>
+
                 <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
-                <p><?php echo $message_register_fail_connection, $message_register_fail_passwords, $message_register_fail_login; ?>
-                </p>
+                <p><?php echo $message_register_fail_connection, $message_register_fail_passwords, $message_register_fail_login; ?></p>
+                
                 <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
                     margin-top: 15px;
                     padding: 8px 25px;

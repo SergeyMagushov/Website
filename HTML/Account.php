@@ -37,8 +37,22 @@
                 color: #333;
                 position: relative;
             ">
+            
+            <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                &times;
+            </span>
+
             <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Ошибка</p>
-            <!-- ИСПРАВЛЕНО: имя переменной заменено на корректное message_score_fail -->
             <p><?php echo $message_account_fail; ?></p>
             <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
                     margin-top: 15px;
@@ -51,42 +65,62 @@
     </div>
 <?php endif; ?>
 
- <!-- Вывод сообщения об удалении комментария -->
-    <?php if (!empty($message_feedback_delete)): ?>
-        <div id="errorModal" style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 999999;
+<!-- Вывод сообщения об удалении комментария -->
+<?php if (!empty($_SESSION['message_feedback_delete'])): ?>
+    <div id="errorModal" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999;
+    ">
+        <div style="
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 300px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            color: #333;
+            position: relative;
         ">
-            <div style="
-                background: white;
-                padding: 30px;
-                border-radius: 10px;
-                text-align: center;
-                min-width: 300px;
-                box-shadow: 0 0 20px rgba(0,0,0,0.5);
-                color: #333;
-                position: relative;
-            ">
-                <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Внимание</p>
-                <p><?php echo $message_feedback_delete; ?></p>
-                <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
-                    margin-top: 15px;
-                    padding: 8px 25px;
-                    cursor: pointer;
-                    border: 3px solid grey;
-                    border-radius: 5px;
-                ">ОК</button>
-            </div>
+        
+            <span onclick="document.getElementById('errorModal').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                &times;
+            </span>
+
+            <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;">Поздравляем</p>
+            <p><?php echo $_SESSION['message_feedback_delete']; ?></p>
+            <button class="modal-button" onclick="this.closest('#errorModal').remove()" style="
+                margin-top: 15px;
+                padding: 8px 25px;
+                cursor: pointer;
+                border: 3px solid grey;
+                border-radius: 5px;
+            ">ОК</button>
         </div>
-    <?php endif; ?>
+    </div>
+
+    <!-- Удаление сообщения об успешной регистрации, чтобы оно не появлялось постоянно при открытии страницы авторизации -->
+    <?php
+    unset($_SESSION['message_feedback_delete']);
+?>
+<?php endif; ?>
 
 <body>
     <div class="container">
@@ -95,18 +129,19 @@
             <h1 class="auth-title" style="color: grey">Ваши комментарии</h1>
             <?php feedback_info(); ?>
         </div>
-        
+
         <div class="clicker-auth">
             <div class="clicker">
                 <h1 class="auth-title" style="color: grey">Ваши рекорды</h1>
                 <?php clicker_info(); ?>
             </div>
-            
+
             <div class="auth">
                 <h1 class="auth-title" style="color: grey">Данные аккаунта</h1>
                 <?php auth_info(); ?>
-                <input type="submit" value="Выйти" onclick="window.location.href='../PHP/PHP_QuitAuth.php'; return false;">
-            </div>           
+                <input type="submit" value="Выйти"
+                    onclick="window.location.href='../PHP/PHP_QuitAuth.php'; return false;">
+            </div>
         </div>
 
         <div class="top-users">

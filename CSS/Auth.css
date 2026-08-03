@@ -72,6 +72,10 @@ input[type="submit"]:hover {
   background-color: rgb(255, 136, 0);
 }
 
+.modal-button:hover {
+  background-color: rgb(255, 136, 0);
+}
+
 .container_auth nav ul li a {
   color: #333;
   text-shadow: none !important;
@@ -99,8 +103,4 @@ input[type="submit"]:hover {
 .container_auth {
   animation: fadeIn 0.8s ease-out forwards;
   /* 0.8 секунды, мягкое замедление */
-}
-
-.modal-button:hover {
-  background-color: rgb(255, 136, 0);
 }
