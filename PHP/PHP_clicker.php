@@ -1,18 +1,6 @@
 <?php
+require('../PHP/PHP_DataBase.php'); 
 session_start();
-
-// Подключение базы данных
-$servername = 'localhost';
-$dbname = 'Authorisation';
-$username = 'root';
-$password = '';
-// Создаем соединение
-$connection = mysqli_connect($servername, $username, $password, $dbname);
-// Проверяем соединение
-if (!$connection) {
-    die("Подключение не удалось: " . mysqli_connect_error());
-}
-
 
 if (isset($_POST['button_score'])) { // Обозначаем, что все, что внутри, будет работать при нажатии на кнопку с name "button_score"
     // Объявляем переменные для вывода ошибок в самом начале, чтобы в дальнейшем не было проблем из условий

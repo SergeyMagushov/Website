@@ -97,6 +97,8 @@
     </div>
 
     <?php require('Footer.php'); ?>
+
+    <script src="../Java Script/Window.js"></script>
 </body>
 
 </html>

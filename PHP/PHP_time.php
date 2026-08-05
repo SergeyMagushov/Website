@@ -1,16 +1,6 @@
 <?php
+require('../PHP/PHP_DataBase.php'); 
 session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Authorisation";
-
-$connection = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$connection) {
-    die("Подключение не удалось: " . mysqli_connect_error());
-}
 
 // Код подсчета времени
 if (isset($_SESSION['login'])) {
