@@ -67,13 +67,32 @@ function score_publish()
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
+        $place = 1; // Начинаем с первого места
+        
         while ($row = mysqli_fetch_assoc($result)) {
+            $badge = '';
+            if ($place == 1) {
+                $medal = '<img src="../Images/Clicker/Moon_Lord.gif" style="width: 30px; height: 30px;">' . "<strong>" . "1 место" . "</strong>";
+            } elseif ($place == 2) {
+                $medal = '<img src="../Images/Clicker/Lunatic_Cultist.gif" style="width: 20x; height: 30px;">' . "<strong>" . "2 место" . "</strong>";
+            } elseif ($place == 3) {
+                $medal = '<img src="../Images/Clicker/Betsy.gif" style="width: 30px; height: 30px;">' . "<strong>" . "2 место" . "</strong>";
+            } else {
+                $medal = "<strong>" . "$place" . "</strong>" . "<strong>" . " место" . "</strong>"; // Для остальных мест просто выводим номер
+            }
+
+            // Вывод места результата пользователя в таблице рекордов
+            echo $medal . "<br>";           
+
+            // Вывод результата и никнейма пользователя
             echo "<strong>" . "Результат: " . "</strong>" . (int) $row['score'] . "<br>";
             echo "<strong>" . "Никнейм: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
-
+            // Вывод картинки профиля пользователя
             echo '<strong> Аватарка: </strong>';
             echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="Аватар">' . "<br>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного результата от другого
+
+            $place++; // Прохордим все места в рамках 15 выводимых записей. Первый три получают отметки, как указано в цикле
         }
     }
 }
