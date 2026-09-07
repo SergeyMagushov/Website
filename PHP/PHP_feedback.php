@@ -22,7 +22,7 @@ if (isset($_POST['button_feedback'])) { // Обозначаем, что все, 
     // if ($row['login'] === $name && $row['email'] === $email) {
         // Записываем данные созданных переменных (данные из полей) в соответствующее поля подключенной таблицы БД     
         $sql = "INSERT INTO Feedback (user_id, rating, text, date) VALUES ($user_id, $rating, '$text', '$date')"; // Определяем поле и переменную
-        $sql1 = $connection->prepare($sql);
+        $sql1 = mysqli_query($connection, $sql);
         if ($sql1->execute()) {
             $message_feedback_success = "Ваш отзыв добавлен" . "<br>";
         } else {

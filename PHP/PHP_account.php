@@ -157,10 +157,51 @@ function auth_info()
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
+        $place = 1; // Начинаем с первого места
+
         while ($row = mysqli_fetch_assoc($result)) {
+            
+        $medal = '';
+            if ($place == 1) {
+                $medal = '<img src="../Images/Clicker/Moon_Lord.gif" style="width: 40px; height: 40px;">' . "<strong>" . "1 место" . "</strong>";
+            } elseif ($place == 2) {
+                $medal = '<img src="../Images/Clicker/Lunatic_Cultist.gif" style="width: 25x; height: 38px;">' . "<strong>" . "2 место" . "</strong>";
+            } elseif ($place == 3) {
+                $medal = '<img src="../Images/Clicker/Empress_of_Light.gif" style="width: 70px; height: 45px;">' . "<strong>" . "3 место" . "</strong>";
+            } elseif ($place == 4) {
+                $medal = '<img src="../Images/Clicker/Duke_Fishron_(Second_Form).gif" style="width: 50px; height: 40px;">' . "<strong>" . "4 место" . "</strong>";
+            } elseif ($place == 5) {
+                $medal = '<img src="../Images/Clicker/Golem.webp" style="width: 38px; height: 42px;">' . "<strong>" . "5 место" . "</strong>";
+            } elseif ($place == 6) {
+                $medal = '<img src="../Images/Clicker/Plantera_(Second_form).gif" style="width: 35px; height: 46px;">' . "<strong>" . "6 место" . "</strong>";
+            } elseif ($place == 7) {
+                $medal = '<img src="../Images/Clicker/160px-Twins_(second_form).gif" style="width: 45px; height: 59px;">' . "<strong>" . "7 место" . "</strong>";
+            } elseif ($place == 8) {
+                $medal = '<img src="../Images/Clicker/279px-Queen_Slime_(Second_form).webp" style="width: 60px; height: 30px;">' . "<strong>" . "8 место" . "</strong>";
+            } elseif ($place == 9) {
+                $medal = '<img src="../Images/Clicker/Wall_of_Flesh.gif" style="width: 30px; height: 70px;">' . "<strong>" . "9 место" . "</strong>";
+            } elseif ($place == 10) {
+                $medal = '<img src="../Images/Clicker/Skeletron_Head.png" style="width: 32px; height: 40px;">' . "<strong>" . "10 место" . "</strong>";
+            } elseif ($place == 11) {
+                $medal = '<img src="../Images/Clicker/Deerclops.gif" style="width: 33px; height: 55px;">' . "<strong>" . "11 место" . "</strong>";
+            } elseif ($place == 12) {
+                $medal = '<img src="../Images/Clicker/Queen_Bee.gif" style="width: 55px; height: 44px;">' . "<strong>" . "12 место" . "</strong>";
+            } elseif ($place == 13) {
+                $medal = '<img src="../Images/Clicker/Brain_of_Cthulhu_(Second_Phase).gif" style="width: 40px; height: 40px;">' . "<strong>" . "13 место" . "</strong>";
+            } elseif ($place == 14) {
+                $medal = '<img src="../Images/Clicker/Eye_of_Cthulhu_(Phase_2).gif" style="width: 30px; height: 40px;">' . "<strong>" . "14 место" . "</strong>";
+            } else {
+                $medal = '<img src="../Images/Clicker/King_Slime.gif" style="width: 30px; height: 30px;">' . "<strong>" . "15 место" . "</strong>";
+            }
+
+            // Вывод места результата пользователя в таблице рекордов
+            echo $medal . "<br>";  
+            $place++; // Прохордим все места в рамках 15 выводимых записей. Первый три получают отметки, как указано в цикле
+        
+            // Вывод логина
             echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
             
-            // Вывод картинки с правильным синтаксисом PHP
+            // Вывод картинки
             echo '<strong> Аватарка: </strong>';
             echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="Аватар">' . "<br>";
            
