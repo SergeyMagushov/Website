@@ -27,12 +27,19 @@ function feedback_info()
             echo "<strong>" . "Оценка: " . "</strong>" . (int) $row['rating'] . "/10" . "<br>";
             echo "<strong>" . "Комментарий: " . "</strong>" . htmlspecialchars($row['text']);
             echo "</div>";
+
+            // Правый блок с формой отправки id комментария для изменения выбранной строки
+            echo "<form action='' method='POST' class='edit-comment-form'>";  
+            echo "<input type='hidden' name='edit_comment_id' value='" . $row['id'] . "'>";
+            echo "<input type='hidden' name='edit_comment_text' value='" . $row['text'] . "'>";
+            echo "<input type='submit' name='edit_comment_btn' value='Изменить'>";
+            echo "</form>";
             
             // Правый блок с формой отправки id комментария для удаления выбранной строки
             echo "<form action='' method='POST' class='delete-comment-form'>";
             echo "<input type='hidden' name='delete_comment_id' value='" . $row['id'] . "'>";
             echo "<input type='submit' name='delete_comment_btn' value='Удалить'>";
-            echo "</form>";
+            echo "</form>";            
 
             echo "</div>"; // Конец контейнера для строки отзыва
             
@@ -63,6 +70,26 @@ if (isset($_POST['delete_comment_btn']) && isset($_POST['delete_comment_id'])) {
     exit();
 }
 
+// Редактируем комментарий в таблице отзывов
+if (isset($_POST['edit_comment_btn']) && isset($_POST['edit_comment_id']) && isset($_POST['edit_comment_text'])) {
+    global $connection;
+    $edit_id = (int)$_POST['edit_comment_id'];
+    $user_id = (int)$_SESSION['id'];
+
+    // Экранируем данные, чтобы избежать SQL-инъекций и корректно записать текст
+    $new_comment_text = mysqli_real_escape_string($connection, $_POST['edit_comment_text']);
+    
+    // Обновление комментария в таблице Feedback по его id и id текущего пользователя    
+    $sql_edit = "UPDATE Feedback SET text = '$new_comment_text' WHERE id = $edit_id AND user_id = $user_id";
+    mysqli_query($connection, $sql_edit); 
+    
+    // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
+    $_SESSION['message_feedback_edit'] = "Комментарий изменен";
+
+    // Перезагрузка страницы для обновления списка комментариев
+    header("Location: ../HTML/Account.php");
+    exit();
+}
 
 // Выводим информацию из таблицы рекордов
 function clicker_info()

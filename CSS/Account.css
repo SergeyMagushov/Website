@@ -137,6 +137,13 @@ input[type="submit"] {
   margin: 0;
 }
 
+/* Кнопка изменения комментариев */
+.edit-comment-form input[type="submit"] {
+  width: 5vw; 
+  height: 3vh;
+  margin: 0;
+}
+
 input[type="submit"]:hover {
   background-color: rgb(255, 136, 0);
   color: white;
