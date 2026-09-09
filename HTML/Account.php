@@ -122,6 +122,61 @@
 ?>
 <?php endif; ?>
 
+<!-- Вывод модального окна с полем для изменения комментария -->
+<!-- К этом модальному окну не применяется анимация автоматического закрытия из файла Window.js, потому что у него название errorModalLong -->
+<!-- Автоматического закрытия модального окна, так как необходимо написать новый комментарий -->
+<?php if (!empty($_SESSION['feedback_edit'])): ?>
+    <div id="errorModalLong" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999;
+    ">
+        <div style="
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 300px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            color: #333;
+            position: relative;
+        ">
+        
+            <span onclick="document.getElementById('errorModalLong').remove()" style="
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 24px;
+                font-weight: bold;
+                color: #aaa;
+                cursor: pointer;
+                line-height: 1;
+                transition: color 0.2s;
+            " onmouseover="this.style.color='#333'" onmouseout="this.style.color='#aaa'">
+                &times;
+            </span>
+
+            <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;"><?php echo $_SESSION['feedback_edit']; ?></p>
+                <form action="" method="POST">                    
+                    <input type="text" name="edit_comment_text" minlength="10" maxlength="3000" fplaceholder="От 10 до 3 000 символов" required><br>
+                    <input type="submit" name="button_feedback" value="Изменить комментарий">
+                </form>
+        </div>
+    </div>
+
+    <!-- Удаление сообщения об изменении комментария, чтобы оно не появлялось постоянно при перезагрузки страницы личного кабинета -->
+    <?php
+    unset($_SESSION['feedback_edit']);    
+?>
+<?php endif; ?>
+
 <!-- Вывод сообщения об изменении комментария -->
 <?php if (!empty($_SESSION['message_feedback_edit'])): ?>
     <div id="errorModal" style="

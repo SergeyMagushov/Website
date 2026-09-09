@@ -103,6 +103,7 @@
 
         </div>
     </header>
+    <main>
 
     <script src="../Java Script/MP3Player.js"></script>
 

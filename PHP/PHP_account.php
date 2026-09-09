@@ -76,19 +76,23 @@ if (isset($_POST['edit_comment_btn']) && isset($_POST['edit_comment_id']) && iss
     $edit_id = (int)$_POST['edit_comment_id'];
     $user_id = (int)$_SESSION['id'];
 
-    // Экранируем данные, чтобы избежать SQL-инъекций и корректно записать текст
-    $new_comment_text = mysqli_real_escape_string($connection, $_POST['edit_comment_text']);
+    // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
+    $_SESSION['feedback_edit'] = "Введите новый коментарий" . "<br>" . "(Функционал не работает)";
+
+    $new_comment_text = htmlspecialchars($_POST['edit_comment_text']);
     
+    if (isset($_POST['button_feedback'])) { 
     // Обновление комментария в таблице Feedback по его id и id текущего пользователя    
     $sql_edit = "UPDATE Feedback SET text = '$new_comment_text' WHERE id = $edit_id AND user_id = $user_id";
-    mysqli_query($connection, $sql_edit); 
-    
+    mysqli_query($connection, $sql_edit);    
+       
     // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
     $_SESSION['message_feedback_edit'] = "Комментарий изменен";
 
     // Перезагрузка страницы для обновления списка комментариев
     header("Location: ../HTML/Account.php");
     exit();
+    }
 }
 
 // Выводим информацию из таблицы рекордов

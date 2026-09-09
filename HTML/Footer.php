@@ -9,6 +9,7 @@
 </head>
 
 <body>
+</main>
     <footer>
         <div class="footer-container">
             <div class="footer-content">

@@ -28,7 +28,7 @@ html {
   animation: fadeIn 0.8s ease-out forwards;
 }
 
-.feedback {
+.feedback { 
   width: 52vw; 
   height: 65vh;
   overflow-y: auto;
@@ -130,6 +130,11 @@ input[type="submit"] {
   margin-right: auto;
 }
 
+input[type="submit"]:hover {
+  background-color: rgb(255, 136, 0);
+  color: white;
+}
+
 /* Кнопка удаления комментариев */
 .delete-comment-form input[type="submit"] {
   width: 5vw; 
@@ -144,9 +149,17 @@ input[type="submit"] {
   margin: 0;
 }
 
-input[type="submit"]:hover {
-  background-color: rgb(255, 136, 0);
-  color: white;
+/* Описание того, как выглядит поле изменения комментария в модальном окне */
+input[type="text"] {
+  text-align: center;
+  font-size: clamp(14px, 1vw, 20px);
+  width: 18vw;
+  height: 4vh;
+  margin-top: 3vh;
+  display: block;
+  border: 3px solid grey;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .modal-button:hover {
