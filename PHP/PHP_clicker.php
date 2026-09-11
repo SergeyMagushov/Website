@@ -107,12 +107,12 @@ function score_publish()
             echo $medal . "<br>"; 
             $place++; // Прохордим все места в рамках 15 выводимых записей. Первый три получают отметки, как указано в цикле          
 
-            // Вывод результата и никнейма пользователя
-            echo "<strong>" . "Результат: " . "</strong>" . (int) $row['score'] . "<br>";
-            echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
+            // Вывод результата и никнейма пользователя           
+            echo "<strong>" . "Никнейм: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
             // Вывод картинки профиля пользователя
             echo '<strong> Аватарка: </strong>';
             echo '<img src="' . htmlspecialchars($row['avatar']) . '"style="width: 30px; height: 30px; object-fit: cover; border-radius: 50%;" alt="Аватар">' . "<br>";
+            echo "<strong>" . "Результат: " . "</strong>" . (int) $row['score'] . "<br>";
             echo "<hr>"; // вывод строки, представляющей прямую линию, для отделения одного результата от другого
 
             

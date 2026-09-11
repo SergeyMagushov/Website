@@ -32,13 +32,13 @@ function feedback_info()
             echo "<form action='' method='POST' class='edit-comment-form'>";  
             echo "<input type='hidden' name='edit_comment_id' value='" . $row['id'] . "'>";
             echo "<input type='hidden' name='edit_comment_text' value='" . $row['text'] . "'>";
-            echo "<input type='submit' name='edit_comment_btn' value='Изменить'>";
+            echo "<input type='submit' name='edit_comment_button' value='Изменить'>";
             echo "</form>";
             
             // Правый блок с формой отправки id комментария для удаления выбранной строки
             echo "<form action='' method='POST' class='delete-comment-form'>";
             echo "<input type='hidden' name='delete_comment_id' value='" . $row['id'] . "'>";
-            echo "<input type='submit' name='delete_comment_btn' value='Удалить'>";
+            echo "<input type='submit' name='delete_comment_button' value='Удалить'>";
             echo "</form>";            
 
             echo "</div>"; // Конец контейнера для строки отзыва
@@ -52,8 +52,10 @@ function feedback_info()
 
 
 // Удаляем необходимый комментарий из таблицы отзывов
-if (isset($_POST['delete_comment_btn']) && isset($_POST['delete_comment_id'])) {
+if (isset($_POST['delete_comment_button']) && isset($_POST['delete_comment_id'])) {
     global $connection;
+
+    // Id комментария и id пользователя записываем в переменные
     $delete_id = (int)$_POST['delete_comment_id'];
     $user_id = $_SESSION['id'];
 
@@ -70,18 +72,34 @@ if (isset($_POST['delete_comment_btn']) && isset($_POST['delete_comment_id'])) {
     exit();
 }
 
-// Редактируем комментарий в таблице отзывов
-if (isset($_POST['edit_comment_btn']) && isset($_POST['edit_comment_id']) && isset($_POST['edit_comment_text'])) {
+// Редактируем комментарий в таблице отзывов. Шаг 1 из 2 - Нажатие кнопки "Изменить"
+if (isset($_POST['edit_comment_button']) && isset($_POST['edit_comment_id'])) {
     global $connection;
-    $edit_id = (int)$_POST['edit_comment_id'];
+
+    // Сохраняем id комментарию в сессию, что он не удалился при перезагрузке
+    $_SESSION['edit_comment_id_new'] = (int)$_POST['edit_comment_id'];
+    
+    // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
+    $_SESSION['feedback_edit'] = "Введите новый коментарий";
+    
+    // Перезагрузка страницы для обновления списка комментариев
+    header("Location: ../HTML/Account.php");
+    exit();
+}
+
+// Редактируем комментарий в таблице отзывов. Шаг 2 из 2 - открытие модального окна с полем для ввода нового комментария
+if (isset($_POST['button_feedback']) && isset($_POST['edit_comment_text']) && isset($_SESSION[edit_comment_id_new])) {
+    global $connection;
+
+    // Id комментария и id пользователя записываем в переменные
+    $edit_id = (int)$_SESSION['edit_comment_id_new'];
     $user_id = (int)$_SESSION['id'];
 
     // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
-    $_SESSION['feedback_edit'] = "Введите новый коментарий" . "<br>" . "(Функционал не работает)";
+    $_SESSION['feedback_edit'] = "Введите новый коментарий";
 
     $new_comment_text = htmlspecialchars($_POST['edit_comment_text']);
-    
-    if (isset($_POST['button_feedback'])) { 
+        
     // Обновление комментария в таблице Feedback по его id и id текущего пользователя    
     $sql_edit = "UPDATE Feedback SET text = '$new_comment_text' WHERE id = $edit_id AND user_id = $user_id";
     mysqli_query($connection, $sql_edit);    
@@ -89,10 +107,12 @@ if (isset($_POST['edit_comment_btn']) && isset($_POST['edit_comment_id']) && iss
     // Сохраняем сообщение в сессию, чтобы оно не удалилось при перезагрузке
     $_SESSION['message_feedback_edit'] = "Комментарий изменен";
 
+    //Закрываем окно с полем для изменения комментария, чтобы кего не пришлось закрывать после закрытия окна, что комментарий был изменен
+    unset($_SESSION['feedback_edit']);
+
     // Перезагрузка страницы для обновления списка комментариев
     header("Location: ../HTML/Account.php");
     exit();
-    }
 }
 
 // Выводим информацию из таблицы рекордов
@@ -230,7 +250,7 @@ function auth_info()
             $place++; // Прохордим все места в рамках 15 выводимых записей. Первый три получают отметки, как указано в цикле
         
             // Вывод логина
-            echo "<strong>" . "Логин: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
+            echo "<strong>" . "Никнейм: " . "</strong>" . htmlspecialchars($row['login']) . "<br>";
             
             // Вывод картинки
             echo '<strong> Аватарка: </strong>';

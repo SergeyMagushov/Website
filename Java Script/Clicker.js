@@ -3,6 +3,7 @@ let count = 0; //Счетчик общего количества кликов
 let currentCount = 1; //Счетчик прибавки при ручном нажатии 
 let currentCount1 = 1; //Счетчик авто-прибавки
 let achievedMilestones = []; //Переменная для отслеживания промежуточных результатов для работы функционала достижений (ачивок)
+let nextMilestone = 100;  
 
 // Связываемв которые надо выводить новые данные - это сообщения о текущем счете, прибавки при ручном и автокликах и счет > или < 0
 const scoreDisplay = document.getElementById('score'); // Вывод информации об общем количестве нажатий
@@ -339,16 +340,17 @@ function updateHiddenField() {
 
 // Функция для вывода сообщения о достижении определенного количества счета (достижение)
 function checkAndShowMilestone(currentScore) {
-    // Переменная для обозначения шага условия достижения, чтобы каждые 5 000 выдавалось достижение
-    let milestoneStep = 5000;
     
-    // Находим ближайший пройденное значение (например, если счет 5100, то значение — 5000)
-    let currentMilestone = Math.floor(currentScore / milestoneStep) * milestoneStep;
-
-    // Если значение больше нуля, оно еще не достигнуто и анимация для этого числа еще не была отображена
-    if (currentMilestone > 0 && !achievedMilestones.includes(currentMilestone)) {        
-        // Сохраняем уже достигнутое оличество очков, чтобы не было повторов
+    // Если текущий счет игрока достиг или превысил запланированный порог
+    if (currentScore >= nextMilestone && !achievedMilestones.includes(nextMilestone)) {        
+        // Запоминаем текущее достигнутое число очков
+        let currentMilestone = nextMilestone;
+        
+        // Сохраняем уже достигнутое количество очков, чтобы не было повторов
         achievedMilestones.push(currentMilestone);
+
+        // Увеличиваем следующий порог в 2 раза для будущего достижения (100 -> 200 -> 400 -> 800)
+        nextMilestone = nextMilestone * 2;
 
         const milestoneDiv = document.createElement('div'); // Создаем виртуальный тег div для текста достижения        
         milestoneDiv.className = 'milestone-achievement'; // Присваиваем ему специальный класс анимации, который мы написали в CSS        
@@ -369,4 +371,5 @@ function checkAndShowMilestone(currentScore) {
         }, 1500);
     }
 }
+
 

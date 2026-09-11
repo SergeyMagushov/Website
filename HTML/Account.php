@@ -165,7 +165,7 @@
 
             <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 10px;"><?php echo $_SESSION['feedback_edit']; ?></p>
                 <form action="" method="POST">                    
-                    <input type="text" name="edit_comment_text" minlength="10" maxlength="3000" fplaceholder="От 10 до 3 000 символов" required><br>
+                    <input type="text" name="edit_comment_text" minlength="10" maxlength="3000" placeholder="От 10 до 3 000 символов" required><br>
                     <input type="submit" name="button_feedback" value="Изменить комментарий">
                 </form>
         </div>
