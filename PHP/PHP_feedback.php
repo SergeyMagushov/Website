@@ -23,7 +23,7 @@ if (isset($_POST['button_feedback'])) { // Обозначаем, что все, 
         // Записываем данные созданных переменных (данные из полей) в соответствующее поля подключенной таблицы БД     
         $sql = "INSERT INTO Feedback (user_id, rating, text, date) VALUES ($user_id, $rating, '$text', '$date')"; // Определяем поле и переменную
         $sql1 = mysqli_query($connection, $sql);
-        if ($sql1->execute()) {
+        if ($sql1) {
             $message_feedback_success = "Ваш отзыв добавлен" . "<br>";
         } else {
             $message_feedback_fail = "Проблемы с подключением" . $sql1->error;

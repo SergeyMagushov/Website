@@ -27,12 +27,10 @@ if (isset($_POST['button_score'])) { // Обозначаем, что все, ч�
             $sql1 = mysqli_query($connection, $sql);
 
             if ($sql1) {
-                if ($sql1->execute()) {
-                    $message_score_success = "Вы улучшили свой рекорд" . "<br>";
-                } else {
-                    $message_score_fail = "Проблемы с сохранением: " . $sql1->error;
-                }
-                $sql1->close();
+                $message_score_success = "Вы улучшили свой рекорд" . "<br>";
+            } else {
+                // Для процедурного стиля ошибку получаем через mysqli_error($connection)
+                $message_score_fail = "Проблемы с сохранением: " . mysqli_error($connection);
             }
         } else {
             // Если новый результат меньше или равен старому, выводим сообщение без обновления БД
@@ -45,16 +43,12 @@ if (isset($_POST['button_score'])) { // Обозначаем, что все, ч�
         $sql1 = mysqli_query($connection, $sql);
 
         if ($sql1) {
-            if ($sql1->execute()) {
-                $message_score_success = "Ваш результат записан" . "<br>";
-            } else {
-                $message_score_fail = "Проблемы с сохранением: " . $sql1->error;
-            }
-            $sql1->close();
+            $message_score_success = "Ваш результат записан" . "<br>";
+        } else {
+            $message_score_fail = "Проблемы с сохранением: " . mysqli_error($connection);
         }
     }
 }
-
 
 // Публикуем топ-10 записей (результатов), хранящихся в таблице "Leaderboard", на странице. Для этого создаем функцию и потом вызываем ее в HTMl 
 function score_publish()
