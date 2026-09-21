@@ -15,7 +15,7 @@ body {
     gap: 1vw;
     padding: 1vh 1vw;
     /* background-image: url("../Images/Backgrounds/Capture 2026-01-19 16_04_35.png"); */
-    background-image: url("../Images/Backgrounds/Website.jpeg");
+    background-image: url("../Images/Backgrounds/Hallow.webp");
     background-size: cover;
 }
 
@@ -216,7 +216,7 @@ button:hover,
   }
   to {
     opacity: 1; /* Полностью видимый */
-    transform: translateY(0); /* Возвращается в исходную точку */
+    transform: translateY(0); /* Возвращается in исходную точку */
   }
 }
 
@@ -226,4 +226,19 @@ button:hover,
 #slider3,
 #slider4 {
   animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+}
+
+/* Адаптация под 2K разрешение (2560x1440) */
+@media screen and (min-width: 2560px) and (min-height: 1400px) {
+  button,
+  #prevBtn1, #nextBtn1, #prevBtn2, #nextBtn2,
+  #prevBtn3, #nextBtn3, #prevBtn4, #nextBtn4 {
+    width: 2vw !important;
+    height: 2vw !important;
+  }
+
+  .dot {
+    width: 1vw !important;
+    height: 1vw !important;
+  }
 }

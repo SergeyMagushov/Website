@@ -12,7 +12,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("../Images/Backgrounds/Website.jpeg");
+  background-image: url("../Images/Backgrounds/Forest.jfif");
   background-size: cover;
   background-position: center;
 }
@@ -223,5 +223,24 @@ input[type="text"] {
     /* Полностью видимый */
     transform: translateY(0);
     /* Возвращается в исходную точку */
+  }
+}
+
+/* Адаптация под 2K разрешение (2560x1440) */
+@media screen and (min-width: 2560px) and (min-height: 1400px) {
+  input[type="text"] {
+    height: auto !important;
+    min-height: 40px !important;
+  }
+
+  input[type="submit"] {
+    height: auto !important;
+    min-height: 45px !important;
+  }
+
+  .delete-comment-form input[type="submit"],
+  .edit-comment-form input[type="submit"] {
+    height: auto !important;
+    min-height: 30px !important;
   }
 }

@@ -11,7 +11,7 @@ html {
     align-items: center;
     gap: 3vw; /* Немного увеличил расстояние между карточками для «воздуха» */
     /* background-image: url("../Images/Backgrounds/Website.jpeg"); */
-    background-image: url("../Images/Backgrounds/Website.jpeg");
+    background-image: url("../Images/Backgrounds/Ocean.webp");
     background-size: cover;
     background-position: center; /* Центрирование фонового GIF */
     padding: 2vh 1vw;
@@ -246,4 +246,16 @@ html {
 /* Применяем анимацию к контейнеру */
 .card {
   animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
+}
+
+/* Адаптация под 2K разрешение (2560x1440) */
+@media screen and (min-width: 2560px) and (min-height: 1400px) {
+  .card-icon {
+    width: 5vw !important;
+    height: 5vw !important; /* Удерживаем строгую пропорцию 1:1 для иконки */
+  }
+  
+  .btn {
+    padding: 12px 30px !important; /* Стабилизируем физический размер интерактивной кнопки */
+  }
 }

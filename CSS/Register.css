@@ -11,7 +11,7 @@ html {
   align-items: center;
   justify-content: center;
   /* background-image: url("../Images/Backgrounds/Auth.jpeg"); */
-  background-image: url("../Images/Backgrounds/Website.jpeg");
+  background-image: url("../Images/Backgrounds/Corruption.jfif");
   background-size: cover;
   background-position: center;
 }
@@ -133,3 +133,27 @@ input[type="submit"]:hover {
 .container_register {
   animation: fadeIn 0.8s ease-out forwards; /* 0.8 секунды, мягкое замедление */
 }
+
+/* Адаптация под 2K разрешение (2560x1440) */
+@media screen and (min-width: 2560px) and (min-height: 1400px) {
+  /* Разрешаем форме сжиматься по высоте контента, убирая пустоту снизу */
+  .container_register {
+    height: auto !important;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  .file-upload-label {
+    height: auto !important;
+    min-height: 40px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+
+  input[type="submit"] {
+    height: auto !important;
+    min-height: 45px !important;
+  }
+}
+
