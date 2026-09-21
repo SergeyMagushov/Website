@@ -4,12 +4,13 @@
 <?php require('../PHP/PHP_auth.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы и комментарии пользователей о кликере</title>
+    <meta name="description" content="Раздел отзывов игроков. Оставляйте свои комментарии, ставьте оценки и делитесь впечатлениями об игровом процессе.">
     <link rel="stylesheet" href="../CSS/Feedback.css">
 </head>
 
@@ -128,14 +129,14 @@
         </div>
     <?php endif; ?>
 
-    <div class="body">
+    <main class="body">
         <div class="scrollable-box">
             <?php feedback_publish(); ?>
         </div>
 
         <?php if (isset($_SESSION['login'])): ?>
             <!-- Этот блок виден ТОЛЬКО авторизованным пользователям -->
-            <div class="container_feedback">
+            <section class="container_feedback">
                 <h1 class="auth-title" style="color: grey">Оставить отзыв</h1>
                 <form action="" method="POST" class="feedback">
                     Оценка видосам: <input type="number" min="0" max="10" name="rating" placeholder="От 1 до 10"
@@ -146,16 +147,16 @@
                     Согласие на обработку персональных данных: <input type="checkbox" name="personal" required><br>
                     <input type="submit" name="button_feedback" value="Оставить комментарий">
                 </form>
-            </div>
+            </section>
         <?php else: ?>
-            <!-- Этот блок виден ТОЛЬКО гостям -->
-            <div class="container_feedback" style="text-align: center; padding: 20px;">
+            <!-- Этот блок виден ТОЛЬКО гостей -->
+            <section class="container_feedback" style="text-align: center; padding: 20px;">
                 <p>Чтобы оставить комментарий —
                     <a href="Auth.php" style="color: #007bff; text-decoration: underline;">авторизуйтесь</a>.
                 </p>
-            </div>
+            </section>
         <?php endif; ?>
-    </div>
+    </main>
 
     <?php require('Footer.php'); ?>
 

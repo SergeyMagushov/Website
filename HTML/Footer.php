@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -9,17 +9,16 @@
 </head>
 
 <body>
-</main>
     <footer>
         <div class="footer-container">
             <div class="footer-content">
-                <i class="GGGAME" id="GGGAME"></i>
+                <span class="GGGAME" id="GGGAME"></span>
             </div>
             <nav>
                 <ul>  
-                    <li><a href="https://vk.com/video-1980_456246417">Справочная информация</a></li>
-                    <li><a href="https://vk.com/id312744639">Страница ВК</a></li>
-                    <li><a href="https://vk.com/gggame_channel">Группа ВК</a></li>
+                    <li><a href="https://vk.com" rel="noopener" target="_blank">Справочная информация о проекте</a></li>
+                    <li><a href="https://vk.com" rel="noopener" target="_blank">Официальная страница ВК разработчика</a></li>
+                    <li><a href="https://vk.com" rel="noopener" target="_blank">Группа ВК сообщества игры</a></li>
                 </ul>
             </nav>
         </div>

@@ -4,15 +4,17 @@
 <?php require('../PHP/PHP_time.php'); ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет игрока — Статистика и достижения</title>
+    <meta name="description" content="Управляйте своим аккаунтом, просматривайте историю опубликованных комментариев, рекорды кликов и общую таблицу топ-игроков по времени.">
     <link rel="stylesheet" href="../CSS/Account.css">
 </head>
 
+<body>
 <!-- Вывод сообщения об ошибке подключения -->
 <?php if (!empty($message_account_fail)): ?>
     <div id="errorModal" style="
@@ -234,33 +236,34 @@
 ?>
 <?php endif; ?>
 
-<body>
-    <div class="container">
+    <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Ваш профиль и личные рекорды</h1>
+
+    <main class="container">
         <!-- Левая колонка -->
-        <div class="feedback">
-            <h1 class="auth-title" style="color: grey">Ваши комментарии</h1>
+        <section class="feedback">
+            <h2 class="auth-title" style="color: grey">Ваши комментарии</h2>
             <?php feedback_info(); ?>
-        </div>
+        </section>
 
         <div class="clicker-auth">
-            <div class="clicker">
-                <h1 class="auth-title" style="color: grey">Ваши рекорды</h1>
+            <section class="clicker">
+                <h2 class="auth-title" style="color: grey">Ваши рекорды</h2>
                 <?php clicker_info(); ?>
-            </div>
+            </section>
 
-            <div class="auth">
-                <h1 class="auth-title" style="color: grey">Данные аккаунта</h1>
+            <section class="auth">
+                <h2 class="auth-title" style="color: grey">Данные аккаунта</h2>
                 <?php auth_info(); ?>
                 <input type="submit" value="Выйти"
                     onclick="window.location.href='../PHP/PHP_QuitAuth.php'; return false;">
-            </div>
+            </section>
         </div>
 
-        <div class="top-users">
-            <h1 class="auth-title" style="color: grey">Топ-время</h1>
+        <section class="top-users">
+            <h2 class="auth-title" style="color: grey">Топ-время</h2>
             <?php top_users_info(); ?>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <?php require('Footer.php'); ?>
 

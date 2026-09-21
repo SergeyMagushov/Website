@@ -5,12 +5,13 @@
 <?php require('../PHP/PHP_time.php'); ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация в системе — Личный кабинет кликера</title>
+    <meta name="description" content="Войдите в свой личный профиль игрока для сохранения прогресса счета, покупки улучшений и публикации отзывов.">
     <link rel="stylesheet" href="../CSS/Auth.css">
 </head>
 
@@ -183,8 +184,8 @@
     <?php endif; ?>
 
 
-    <div class="container">
-        <div class="container_auth">
+    <main class="container">
+        <section class="container_auth">
             <h1 class="auth-title" style="color: grey">Вход в систему</h1>
             <form method="POST" action="">
                 Логин: <input type="text" name="login" required><br>
@@ -196,8 +197,8 @@
                 </nav>
                 <input type="submit" name="button_auth" value="Войти в аккаунт">
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <?php require('Footer.php'); ?>
 

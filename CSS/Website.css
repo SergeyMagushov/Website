@@ -11,7 +11,7 @@ html {
     align-items: center;
     gap: 3vw; /* Немного увеличил расстояние между карточками для «воздуха» */
     /* background-image: url("../Images/Backgrounds/Website.jpeg"); */
-    background-image: url("../Images/Gallery/gggame-гггейм.gif");
+    background-image: url("../Images/Backgrounds/Website.jpeg");
     background-size: cover;
     background-position: center; /* Центрирование фонового GIF */
     padding: 2vh 1vw;

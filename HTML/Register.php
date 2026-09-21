@@ -3,12 +3,13 @@
 <?php require('../PHP/PHP_register.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация нового пользователя в системе GGGAME</title>
+    <meta name="description" content="Создайте новый игровой профиль. Заполните форму регистрации, загрузите уникальный аватар и присоединяйтесь к сообществу игроков.">
     <link rel="stylesheet" href="../CSS/Register.css">
 </head>
 
@@ -69,8 +70,8 @@
         </div>
     <?php endif; ?>
 
-    <div class="container">
-        <div class="container_register">
+    <main class="container">
+        <section class="container_register">
             <h1 class="auth-title" style="color: grey">Регистрация</h1>
             <form method="POST" action="" enctype="multipart/form-data">
                 Логин: <input type="text" name="login" minlength="8" maxlength="25" placeholder="От 8 до 25 символов" required><br>
@@ -93,8 +94,8 @@
                 </nav>
                 <input type="submit" name="button_reg" value="Регистрация">                
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <?php require('Footer.php'); ?>
 

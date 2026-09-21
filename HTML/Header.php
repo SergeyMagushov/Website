@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
     <header>
         <div class="header-content">
             <a href="Website.php" class="logo-link">
-                <i class="GGGAME-icon"></i>
+                <span class="GGGAME-icon"></span>
                 GGGAME
             </a>
 
@@ -32,7 +32,7 @@
                         <li class="user-info"><a href="Account.php">Личный кабинет
                             (<strong><?php echo $_SESSION['login']; ?></strong>)</a></li>
                         <!--Вывод картинки из сессии - сессия создана в PHP_auth.php (там же создана сессия для хранения логина) -->
-                        <li><a href="Account.php"><img src="<?php echo htmlspecialchars($_SESSION['avatar']); ?>"
+                        <li><a href="Account.php"><img src="<?php echo htmlspecialchars($_SESSION['avatar']); ?>" alt=""
                             style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;"></a></li>
                         <li><a href="../PHP/PHP_QuitAuth.php">Выйти</a></li>
                     <?php else: ?>
@@ -103,7 +103,6 @@
 
         </div>
     </header>
-    <main>
 
     <script src="../Java Script/MP3Player.js"></script>
 

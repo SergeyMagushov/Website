@@ -8,7 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой Кликер</title>
+    <title>Мой Кликер — Онлайн игра кликер рекордов</title>
+    <meta name="description" content="Играйте в увлекательный онлайн-кликер, копите очки счета, приобретайте автоматические и ручные улучшения и ставьте новые рекорды времени.">
     <link rel="stylesheet" href="../CSS/Clicker.css">
 </head>
 
@@ -119,7 +120,7 @@
     <?php endif; ?>
 
 
-    <div class="body">
+    <main class="body">
         <?php if (isset($_SESSION['login'])): ?>
             <!-- Этот блок виден ТОЛЬКО авторизованным пользователям -->
             <div class="container">
@@ -129,9 +130,9 @@
                     <!-- Кнопка клика -->
                     <div class="button" id="button"></div>
                     <!-- Счетчик прибавки при ручном нажатии -->
-                    <h1>Один клик: <span id="score1">1</span></h1>
+                    <p class="game-info-text">Один клик: <span id="score1">1</span></p>
                     <!-- Счетчик авто-прибавки  -->
-                    <h1>Авто-клик: <span id="score2">1</span></h1>
+                    <p class="game-info-text">Авто-клик: <span id="score2">1</span></p>
 
                     <!-- Поле для вывода сообщения о том, что не хватает средств для приоберетения улучшения. Сейчас не используется -->
                     <!-- <h1><span id="attention"></span></h1> -->
@@ -145,37 +146,37 @@
 
                 <!-- Кнопки улучшений (первая группа)-->
                 <div class="buttons">
-                    <h1>Прибавка +1 (Цена 20)</h1>
+                    <p class="upgrade-title">Прибавка +1 (Цена 20)</p>
                     <div class="button1" id="button1"></div>
-                    <h1>Прибавка +2 (Цена 40)</h1>
+                    <p class="upgrade-title">Прибавка +2 (Цена 40)</p>
                     <div class="button2" id="button2"></div>
-                    <h1>Прибавка +4 (Цена 80)</h1>
+                    <p class="upgrade-title">Прибавка +4 (Цена 80)</p>
                     <div class="button3" id="button3"></div>
-                    <h1>Прибавка +8 (Цена 160)</h1>
+                    <p class="upgrade-title">Прибавка +8 (Цена 160)</p>
                     <div class="button4" id="button4"></div>
                 </div>
 
                 <!-- Кнопки улучшений (вторая группа)-->
                 <div class="buttons1">
-                    <h1>Прибавка +16 (Цена 320)</h1>
+                    <p class="upgrade-title">Прибавка +16 (Цена 320)</p>
                     <div class="button5" id="button5"></div>
-                    <h1>Прибавка +32 (Цена 640)</h1>
+                    <p class="upgrade-title">Прибавка +32 (Цена 640)</p>
                     <div class="button6" id="button6"></div>
-                    <h1>Прибавка +64 (Цена 1280)</h1>
+                    <p class="upgrade-title">Прибавка +64 (Цена 1280)</p>
                     <div class="button7" id="button7"></div>
-                    <h1>Прибавка +128 (Цена 2560)</h1>
+                    <p class="upgrade-title">Прибавка +128 (Цена 2560)</p>
                     <div class="button8" id="button8"></div>
                 </div>
 
                 <!-- Кнопки улучшений (авто клики)-->
                 <div class="buttons2">
-                    <h1>Авто-прибавка +1 (Цена 200)</h1>
+                    <p class="upgrade-title">Авто-прибавка +1 (Цена 200)</p>
                     <div class="button9" id="button9"></div>
-                    <h1>Авто-прибавка +2 (Цена 400)</h1>
+                    <p class="upgrade-title">Авто-прибавка +2 (Цена 400)</p>
                     <div class="button10" id="button10"></div>
-                    <h1>Авто-прибавка +4 (Цена 800)</h1>
+                    <p class="upgrade-title">Авто-прибавка +4 (Цена 800)</p>
                     <div class="button11" id="button11"></div>
-                    <h1>Авто-прибавка +8 (Цена 1600)</h1>
+                    <p class="upgrade-title">Авто-прибавка +8 (Цена 1600)</p>
                     <div class="button12" id="button12"></div>
                 </div>
             </div>
@@ -191,7 +192,7 @@
         <div class="scrollable-box">
             <?php score_publish(); ?>
         </div>
-    </div>
+    </main>
 
     <?php require('Footer.php'); ?>
 

@@ -2,21 +2,23 @@
 <?php require('Header.php'); ?>
 <?php require('../PHP/PHP_time.php'); ?>
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGGAME — Главная страница игровых YouTube-каналов</title>
+    <meta name="description" content="Добро пожаловать на официальный сайт медиа-проектов GGGAME. Информация об основных и дополнительных каналах по Террарии, Смайт и хайлайтам стримов.">
     <link rel="stylesheet" href="../CSS/Website.css">
     <script src="../Java Script/Website.js"></script>
 </head>
 
 <body>
-    <div class="cards-container">
+    <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Медиа-ресурсы и официальные YouTube каналы проекта GGGAME</h1>
+
+    <main class="cards-container">
         <!-- GGGAME -->
-        <div class="card">
+        <article class="card">
             <div class="card-inner">
                 <div class="card-front">
                     <div class="card-icon"></div>
@@ -27,13 +29,13 @@
                     <h2 class="card-title">GGGAME - канал по Террарии</h2>
                     <p class="card-description">То, с чего все началось. Один из крупнейших русскоязычных каналов
                         по Бузарарии</p>
-                    <a href="https://www.youtube.com/@GGGAME_" button class="btn">Перейти на канал</button></a>
+                    <a href="https://youtube.com_" class="btn">Перейти на канал</a>
                 </div>
             </div>
-        </div>
+        </article>
 
         <!-- Serega -->
-        <div class="card">
+        <article class="card">
             <div class="card-inner">
                 <div class="card-front1">
                     <div class="card-icon"></div>
@@ -44,13 +46,13 @@
                     <h2 class="card-title">Serega - канал для души</h2>
                     <p class="card-description">Канал, созданный для публикации туда видосов, которые не могли быть
                         опубликованы на GGGAME</p>
-                    <a href="https://www.youtube.com/@Sergey_Vladislavovich" button class="btn">Перейти на канал</button></a>
+                    <a href="https://youtube.com" class="btn">Перейти на канал</a>
                 </div>
             </div>
-        </div>
+        </article>
 
         <!-- Skotobazina - Smite videos -->
-        <div class="card">
+        <article class="card">
             <div class="card-inner">
                 <div class="card-front2">
                     <div class="card-icon"></div>
@@ -61,13 +63,13 @@
                     <h2 class="card-title">Skotobazina - канал для выхода в англоязычный сегмент</h2>
                     <p class="card-description">После отключения монетизации в русскоязычном Ютубе появилась идея на
                         всякий случай расширить способы получения дохода с видосов</p>
-                    <a href="https://www.youtube.com/@skotobazina-smitevideos" button class="btn">Перейти на канал</button></a>
+                    <a href="https://youtube.com" class="btn">Перейти на канал</a>
                 </div>
             </div>
-        </div>
+        </article>
         
         <!-- Хайлайты GGGAME -->
-        <div class="card">
+        <article class="card">
             <div class="card-inner">
                 <div class="card-front3">
                     <div class="card-icon"></div>
@@ -79,11 +81,11 @@
                     <p class="card-description">Изначально канал был создан зрителем и велся им же. Затем ему было
                         предложено получать зарплатовидину за нарезки. Таким образом, человеку было дано рабочее место,
                         зрителю - дополнительный к стримам контент.</p>
-                    <a href="https://www.youtube.com/channel/UCp_wEBpqE97M23FU_z_K9sw" button class="btn">Перейти на канал</button></a>
+                    <a href="https://youtube.com" class="btn">Перейти на канал</a>
                 </div>
             </div>
-        </div>
-    </div>
+        </article>
+    </main>
 
     <!-- <div class="instructions">
             <p>Наведите курсор на любую карточку, чтобы увидеть обратную сторону с дополнительной информацией</p>
