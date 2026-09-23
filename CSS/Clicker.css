@@ -92,7 +92,10 @@ html, body {
     font-size: clamp(18px, 1vw, 22px);
     color: #333;
     margin: 1vh 0;
+    position: relative; /* Добавлено: позволяет применить z-index к тексту */
+    z-index: 10; /* Добавлено: поднимает текст счета выше вылетающих за края печенья курсоров */
 }
+
 
 .game-info-text {
     font-size: clamp(18px, 1vw, 22px);
@@ -133,6 +136,7 @@ html, body {
     background-image: url("../Images/Clicker/c39bd8ed-876d-4f7a-98c1-fe3271732926-1-1080x1080-1024x1024.png");
     background-size: cover; 
     background-position: center; /* Центрируем картинку печенья внутри круга */
+    position: relative; /* Позволяет курсорам автокликера привязываться к печенью */
 }
 
 /* Кнопки улучшения */
@@ -277,3 +281,36 @@ input[type="submit"]:hover {
     min-height: 45px !important;
   }
 }
+
+
+/* Иконки курсоров мыши, постоянно висящие вокруг главного печенья */
+.cursor-icon {
+    position: absolute;
+    width: 24px; /* Уменьшили размер, чтобы они сидели плотнее */
+    height: 24px; /* Уменьшили размер, чтобы они сидели плотнее */
+    pointer-events: none; /* Чтобы иконки не мешали кликать по печенью */
+    background-image: url("../Images/Clicker/cursor.png"); /* Путь к вашему внутреннему файлу курсора */
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -1; /* Добавлено: уводит курсоры под надпись «Счет», но оставляет поверх фона */
+    
+    /* Точно центрируем курсор в середине печенья */
+    top: 50%;
+    left: 50%;
+    
+    /* Сначала сдвигаем из центра наружу на нужный радиус, а затем поворачиваем */
+    transform: translate(-50%, -50%) rotate(var(--angle)) translate(0, var(--radius)) rotate(45deg);
+    
+    animation: constantClickEffect 1s ease-in-out infinite; /* Бесконечная плавная имитация клика */
+}
+
+/* Бесконечная анимация покачивания (имитация клика по печенью на месте) */
+@keyframes constantClickEffect {
+    0%, 100% {
+        margin-top: 0px;
+    }
+    50% {
+        margin-top: 2px; /* Курсор слегка делает движение клика к центру печенья */
+    }
+}
+

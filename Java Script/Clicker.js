@@ -2,6 +2,7 @@
 let count = 0; //Счетчик общего количества кликов
 let currentCount = 1; //Счетчик прибавки при ручном нажатии 
 let currentCount1 = 1; //Счетчик авто-прибавки
+let totalAutoCursors = 0; // Счетчик общего количества купленных автоматических курсоров
 let achievedMilestones = []; //Переменная для отслеживания промежуточных результатов для работы функционала достижений (ачивок)
 let nextMilestone = 100;  
 
@@ -54,6 +55,13 @@ setInterval(() => {
 
     // Передаем текущее значение количества автокликов в вылетающие цифры по координатам кнопки клика
     createFloatingNumber(randomX, randomY, `+${currentCount1}`, '#00ab4a');
+
+    // Если куплено хотя бы одно автоматическое улучшение (значение авто-клика больше стартового 1)
+    if (currentCount1 > 1) {
+        // Вызываем визуальное появление курсоров вокруг главного печенья каждую секунду при авто-клике
+        // Количество отображаемых курсоров за один такт зависит от силы вашего автоклика
+        spawnCursorsAroundCookie(currentCount1);
+    }
 }, 1000);
 
 
@@ -240,6 +248,10 @@ button9.addEventListener('click', (event) => {
 
         createFloatingNumber(event.clientX, event.clientY, `-200`);
 
+        // Увеличиваем общее число постоянных курсоров на 1 и перерисовываем окантовку вокруг печенья
+        totalAutoCursors = totalAutoCursors + 1;
+        spawnCursorsAroundCookie();
+
         error.innerText = "";
     } else {
         // error.innerText = "Недостаточно ресурсов для улучшения";
@@ -257,6 +269,10 @@ button10.addEventListener('click', (event) => {
         scoreDisplay2.innerText = currentCount1;
 
         createFloatingNumber(event.clientX, event.clientY, `-400`);
+
+        // Увеличиваем общее число постоянных курсоров на 2 и перерисовываем окантовку вокруг печенья
+        totalAutoCursors = totalAutoCursors + 2;
+        spawnCursorsAroundCookie();
 
         error.innerText = "";
     } else {
@@ -276,6 +292,10 @@ button11.addEventListener('click', (event) => {
 
         createFloatingNumber(event.clientX, event.clientY, `-800`);
 
+        // Увеличиваем общее число постоянных курсоров на 4 и перерисовываем окантовку вокруг печенья
+        totalAutoCursors = totalAutoCursors + 4;
+        spawnCursorsAroundCookie();
+
         error.innerText = "";
     } else {
         // error.innerText = "Недостаточно ресурсов для улучшения";
@@ -294,13 +314,16 @@ button12.addEventListener('click', (event) => {
 
         createFloatingNumber(event.clientX, event.clientY, `-1600`);
 
+        // Увеличиваем общее число постоянных курсоров на 8 и перерисовываем окантовку вокруг печенья
+        totalAutoCursors = totalAutoCursors + 8;
+        spawnCursorsAroundCookie();
+
         error.innerText = "";
     } else {
         // error.innerText = "Недостаточно ресурсов для улучшения";
         createFloatingNumber(event.clientX, event.clientY, "Недостаточно ресурсов для улучшения");
     }
 });
-
 
 // Функция для создания эффекта вылетающих цифр на экране
 function createFloatingNumber(x, y, text, color) {
@@ -372,4 +395,49 @@ function checkAndShowMilestone(currentScore) {
     }
 }
 
+// Функция для создания значков мыши (курсоров), которые стабильно висят рядами вокруг печенья
+function spawnCursorsAroundCookie() {
+    // Проверяем, существует ли на странице главная кнопка печенья
+    if (!button) return;
+
+    // Сначала удаляем все старые статичные курсоры перед тем, как перерисовать обновленные ряды
+    const oldCursors = button.querySelectorAll('.cursor-icon');
+    oldCursors.forEach(cur => cur.remove());
+    
+    // Сколько курсоров максимально помещается в самый первый (внутренний) ряд окружности
+    const maxInFirstRow = 20; 
+
+    // Цикл идет по каждому купленному курсору из переменной totalAutoCursors
+    for (let i = 0; i < totalAutoCursors; i++) {
+        
+        // Определяем, на каком ряду (кольце) должен стоять текущий курсор
+        const rowNumber = Math.floor(i / maxInFirstRow);
+        
+        // Порядковый номер курсора внутри его текущего ряда
+        const indexInRow = i % maxInFirstRow;
+        
+        // Базовый радиус (половина ширины печенья минус 5px), каждый следующий ряд отодвигается еще на 18px
+        const currentRadius = (button.offsetWidth / 2) - 5 + (rowNumber * 18); 
+
+        // Вычисляем смещение для шахматного порядка: каждый нечетный ряд сдвигается на половину шага курсора
+        // (360 градусов / 20 курсоров / 2 = 9 градусов смещения для чередования рядов)
+        const rowShift = (rowNumber % 2 === 1) ? (360 / maxInFirstRow / 2) : 0;
+
+        // Распределяем курсоры строго по цепочке друг за другом вокруг печенья с учетом шахматного смещения ряда
+        const angleDegrees = ((indexInRow / maxInFirstRow) * 360) + rowShift;
+        
+        // Создаем новый постоянный элемент div для отображения курсора мыши
+        const cursorDiv = document.createElement('div');
+        
+        // Назначаем класс стилей, который мы прописали в CSS файле
+        cursorDiv.className = 'cursor-icon';
+        
+        // Передаем точный угол и радиус в CSS переменные для идеального позиционирования от центра печенья
+        cursorDiv.style.setProperty('--angle', `${angleDegrees}deg`);
+        cursorDiv.style.setProperty('--radius', `-${currentRadius}px`);
+        
+        // Добавляем созданную иконку курсора прямо внутрь главной кнопки печенья
+        button.appendChild(cursorDiv);
+    }
+}
 
