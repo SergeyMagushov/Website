@@ -285,3 +285,91 @@ html {
     padding: 12px 30px !important; /* Корректируем физический размер кнопки */
   }
 }
+
+/* Адаптация под мобильные устройства */
+@media screen and (max-width: 768px) {
+    html {
+        overflow-y: auto; /* Разрешаем вертикальный скролл страницы для прокрутки всех миров */
+    }
+
+    .body {
+        flex-direction: column; /* Выстраиваем основные контейнеры вертикально */
+        justify-content: flex-start;
+        align-items: center;
+        padding: 4vh 4vw; /* Добавляем аккуратные внешние отступы по краям экрана */
+        min-height: auto; /* Снимаем жесткую привязку к высоте дисплея */
+    }
+
+    /* Адаптируем промежуточные контейнеры строк */
+    .cards-container,
+    .cards-container1 {
+        display: flex;
+        flex-direction: column; /* Переводим в один вертикальный ряд */
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0; /* Обнуляем десктопные отступы, чтобы регулировать их через gap */
+        gap: 4vh; /* Одинаковое комфортное расстояние между карточками */
+    }
+    
+    .cards-container {
+        margin-bottom: 4vh; /* Расстояние между группами миров */
+    }
+
+    /* Настройка размеров 3D-карточки мира на мобильном экране */
+    .card {
+        width: 80vw; /* Карточка занимает большую часть ширины экрана смартфона */
+        height: 80vw; /* Удерживаем пропорции идеального квадрата */
+        margin: 0; /* Сбрасываем старые маргины */
+    }
+
+    /* Отключаем десктопный эффект hover при случайном касании во время скролла */
+    .card:hover .card-inner {
+        transform: none;
+    }
+
+    /* Механика переворота карточки по тапу/клику для смартфонов */
+    .card.active .card-inner,
+    .card:active .card-inner {
+        transform: rotateY(180deg);
+    }
+
+    /* Увеличиваем внутренние отступы на фронтальной и обратной сторонах карт */
+    .card-front,
+    .card-front1,
+    .card-front2,
+    .card-front3,
+    .card-front4,
+    .card-front5,
+    .card-front6,
+    .card-front7,
+    .card-back {
+        padding: 4vh 4vw;
+    }
+
+    /* Адаптируем невидимую область иконки */
+    .card-icon {
+        font-size: 35px;
+        width: 12vw;
+        height: 8vh;
+    }
+
+    /* Оптимизация текстовых полей под экраны телефонов */
+    .card-title {
+        font-size: clamp(16px, 5.2vw, 20px); /* Крупный и читабельный заголовок карты мира */
+        margin-bottom: 1.5vh;
+    }
+
+    .card-description {
+        font-size: clamp(13px, 3.8vw, 15px); /* Удобный размер шрифта для чтения описаний карт */
+        max-height: 25vh; /* Даем больше места тексту (актуально для Бесконечной Террарии) */
+        margin-bottom: 3vh;
+    }
+
+    /* Кнопка-капсула загрузки файла (.wld или .zip) под размер пальца */
+    .btn {
+        padding: 1.6vh 7vw;
+        font-size: 13px;
+        width: auto;
+    }
+}
+

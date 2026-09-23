@@ -222,27 +222,123 @@ header nav ul li a:hover,
     background: rgba(0, 171, 74, 0.8);
 }
 
-/* @media (min-width: 768px) {
-    .header {
-        grid-column: 1 / -1;
-    }
-}
-
-@media (min-width: 992px) {
-    .header {
-        grid-column: 1 / -1;
-    }
-}
-
-/* @media (min-width: 1200px) {
-    body {
-        padding: 40px;
-    }
-} */
-
 /* Адаптация под 2K разрешение (2560x1440) */
 @media screen and (min-width: 2560px) and (min-height: 1400px) {
   .music-dropdown .music-menu {
     width: 350px !important;
   }
 }
+
+/* Адаптация под мобильные устройства */
+@media screen and (max-width: 768px) {
+    header {
+        height: auto; /* Снимаем жесткую десктопную высоту 6vh */
+        padding: 1.5vh 0; /* Добавляем аккуратные вертикальные отступы */
+    }
+
+    .header-content {
+        max-width: 95vw; /* Расширяем контейнер, чтобы контент не зажимался по бокам */
+        padding: 0 4vw;
+        flex-direction: column; /* Выстраиваем логотип, меню и плеер вертикально друг под другом */
+        gap: 2vh; /* Отступы между основными узлами шапки */
+        align-items: center;
+    }
+
+    /* Логотип по центру */
+    .logo-link {
+        font-size: clamp(20px, 6vw, 24px); /* Адаптивный размер логотипа */
+        justify-content: center;
+    }
+
+    /* Навигационное меню */
+    header nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    header nav ul {
+        flex-direction: column; /* Разворачиваем ссылки меню в вертикальный стек */
+        width: 100%;
+        gap: 1vh; /* Расстояние между ссылками меню */
+    }
+
+    header nav ul li {
+        margin-left: 0; /* Сбрасываем боковой десктопный отступ */
+        width: 100%;
+        text-align: center;
+    }
+
+    header nav ul li a, 
+    header nav ul li.user-info {
+        font-size: 16px; /* Комфортный размер шрифта для мобильного меню */
+        display: block; /* Растягиваем ссылки во всю ширину для удобства нажатия пальцем */
+        padding: 1vh 0;
+    }
+
+    /* Стилизация аватара пользователя в мобильном меню */
+    header nav ul li a img {
+        width: 45px !important;
+        height: 45px !important;
+        margin: 0.5vh auto;
+    }
+
+    /* Выпадающий блок музыки (Музыкальный плеер) */
+    .music-dropdown {
+        position: relative; /* Переводим из абсолютного позиционирования в общий поток под меню */
+        right: auto;
+        top: auto;
+        transform: none; /* Сбрасываем десктопное центрирование по оси Y */
+        width: 100%;
+        text-align: center;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+    }
+
+    /* Сбрасываем эффекты трансформации ховера, которые мешают на смартфонах */
+    .music-dropdown:hover {
+        transform: none;
+    }
+    header nav ul li:not(.user-info):hover, 
+    .music-dropdown:hover .music-toggle {
+        transform: none;
+    }
+
+    .music-dropdown .music-toggle {
+        font-size: 16px;
+        display: inline-block;
+        padding: 1vh 4vw;
+        border: 2px solid rgba(255, 255, 255, 0.4); /* Оформляем кнопку переключения плеера */
+        border-radius: 50px;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Поведение выпадающего списка музыки на телефонах */
+    .music-dropdown .music-menu {
+        position: absolute;
+        top: calc(100% + 1vh);
+        left: 50%;
+        transform: translateX(-50%); /* Идеально центрируем мобильное окно плеера */
+        width: 85vw; /* Увеличиваем ширину окна, чтобы названия треков были читаемы */
+        height: 40vh; /* Ограничиваем высоту удобным для скролла фреймом */
+        border-radius: 20px;
+    }
+
+    /* Кастомная фиксация плеера в самом верху прокрутки списка на смартфонах */
+    .music-dropdown .music-menu li.player-wrapper {
+        top: -2.1vh;
+        padding: 1.5vh 2vw;
+    }
+
+    .music-dropdown #global-player {
+        height: 40px; /* Увеличиваем высоту элементов управления плеера под тач-интерфейс */
+    }
+
+    .music-dropdown .music-menu li a {
+        padding: 1.5vh 4vw; /* Увеличиваем кликабельную область элементов списка песен */
+        font-size: 15px;
+        white-space: normal; /* Разрешаем перенос слишком длинных названий треков, если они не влезают */
+        word-wrap: break-word;
+        text-align: left;
+    }
+}
+

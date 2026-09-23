@@ -156,8 +156,8 @@ button:hover,
     display: flex;
     justify-content: center;
     gap: 1vw;
-    position: absolute;
-    bottom: 2vh;
+    position: relative; /* Изменено с absolute на relative, чтобы точки встали под текстом */
+    margin-bottom: 2vh; /* Заменило bottom: 2vh для сохранения аккуратного отступа снизу */
     left: 0;
 }
 
@@ -242,3 +242,69 @@ button:hover,
     height: 1vw !important;
   }
 }
+   
+/* Адаптация под мобильные устройства */ 
+@media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Разрешаем вертикальную прокрутку страницы на мобильных */
+    }
+
+    .sliders-container {
+        flex-direction: column; /* Выстраиваем слайдеры друг под другом в одну колонку */
+        align-items: center;
+        gap: 4vh; /* Увеличиваем расстояние между карточками для удобства */
+        padding: 4vh 4vw; /* Добавляем аккуратные отступы по краям */
+        min-height: auto; /* Сбрасываем жесткое ограничение по высоте экрана */
+    }
+
+    .slider1,
+    .slider2,
+    .slider3,
+    .slider4 {
+        width: 85vw; /* Увеличиваем ширину карточки, чтобы она занимала почти весь экран мобильного */
+        height: auto; /* Позволяем высоте подстраиваться под контент */
+        margin: 0; /* Обнуляем старые margin для ровного выравнивания */
+        padding-bottom: 2vh; /* Добавляем внутренний отступ снизу */
+    }
+
+    /* Адаптируем размеры заголовков внутри слайдеров */
+    .slider1 h1, .slider2 h1, .slider3 h1, .slider4 h1,
+    .slider-title {
+        font-size: clamp(20px, 5vw, 24px); /* Уменьшаем шрифт заголовков на мобильных */
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+
+    /* Фиксируем пропорции области с картинкой */
+    .slides,
+    #slides1,
+    #slides2,
+    #slides3,
+    #slides4 {
+        height: 25vh; /* Ограничиваем высоту картинки, чтобы карточка не была огромной */
+    }
+
+    /* Адаптируем текст под картинкой */
+    .picture_name {
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 2vh 0 1vh 0; /* Корректируем отступы, чтобы текст не прижимался */
+    }
+
+    /* Настройка боковых стрелочек для мобильных */
+    button,
+    #prevBtn1, #nextBtn1,
+    #prevBtn2, #nextBtn2,
+    #prevBtn3, #nextBtn3,
+    #prevBtn4, #nextBtn4 {
+        width: 8vw !important; /* Увеличиваем область клика для пальцев */
+        height: 8vw !important;
+        font-size: 16px;
+    }
+
+    /* Настройка точек перелистывания */
+    .dot {
+        width: 3vw !important; /* Делаем точки крупнее для мобильных дисплеев */
+        height: 3vw !important;
+    }
+}
+

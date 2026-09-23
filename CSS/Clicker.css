@@ -263,26 +263,6 @@ input[type="submit"]:hover {
   }
 }
 
-/* Адаптация под 2K разрешение (2560x1440) */
-@media screen and (min-width: 2560px) and (min-height: 1400px) {
-  .button {
-    width: 11vw !important;
-    height: 11vw !important;
-  }
-
-  .button1, .button2, .button3, .button4, .button5, .button6, 
-  .button7, .button8, .button9, .button10, .button11, .button12 {
-    width: 4vw !important;
-    height: 4vw !important;
-  }
-
-  input[type="submit"] {
-    height: auto !important;
-    min-height: 45px !important;
-  }
-}
-
-
 /* Иконки курсоров мыши, постоянно висящие вокруг главного печенья */
 .cursor-icon {
     position: absolute;
@@ -311,6 +291,117 @@ input[type="submit"]:hover {
     }
     50% {
         margin-top: 2px; /* Курсор слегка делает движение клика к центру печенья */
+    }
+}
+
+
+/* Адаптация под 2K разрешение (2560x1440) */
+@media screen and (min-width: 2560px) and (min-height: 1400px) {
+  .button {
+    width: 11vw !important;
+    height: 11vw !important;
+  }
+
+  .button1, .button2, .button3, .button4, .button5, .button6, 
+  .button7, .button8, .button9, .button10, .button11, .button12 {
+    width: 4vw !important;
+    height: 4vw !important;
+  }
+
+  input[type="submit"] {
+    height: auto !important;
+    min-height: 45px !important;
+  }
+}
+
+/* Адаптация под мобильные устройства */
+@media screen and (max-width: 768px) {
+    html, body {
+        overflow-y: auto; /* Разрешаем вертикальную прокрутку всей страницы на мобильных */
+    }
+
+    .body {
+        flex-direction: column; /* Выстраиваем контейнер игры и блок истории результатов друг под другом */
+        align-items: center;
+        justify-content: flex-start;
+        padding: 4vh 4vw; /* Добавляем аккуратные внешние отступы по краям экрана */
+        min-height: auto; /* Снимаем жесткую привязку к высоте экрана */
+        gap: 4vh; /* Расстояние между контейнером игры и боксом публикации */
+    }
+
+    /* Главный контейнер игры (скрывает под собой сетку) */
+    .container {
+        width: 90vw; /* Увеличиваем ширину блока, чтобы задействовать экран по максимуму */
+        height: auto; /* Высота подстраивается автоматически под вертикальный контент */
+        flex-direction: column; /* Выстраиваем игру и улучшения в одну колонку */
+        align-items: center;
+        gap: 3vh; /* Отступы между секциями улучшений */
+        padding: 4vh 4vw;
+        margin-right: 0; /* Обнуляем боковой отступ десктопной версии */
+        margin-bottom: 0;
+    }
+
+    /* Блок главной игры (Счет, печенье, показатели) */
+    .game {
+        flex: none;
+        width: 100%;
+        margin-bottom: 2vh;
+    }
+
+    /* Главная кнопка клика (Большое печенье) */
+    .button {
+        width: 40vw; /* Оптимальный размер для удобного тапа пальцем на мобильном */
+        height: 40vw; /* Сохраняем пропорции идеального круга через одинаковые vw */
+        margin: 2vh auto;
+    }
+
+    /* Иконки курсоров автокликера вокруг печенья */
+    .cursor-icon {
+        width: 16px; /* Немного уменьшаем курсоры автокликера, чтобы они не перекрывали друг друга */
+        height: 16px;
+    }
+
+    /* Колонки улучшений (кнопки покупок) */
+    .buttons, .buttons1, .buttons2 {
+        flex: none;
+        width: 100%;
+        margin-left: 0; /* Убираем левый отступ, так как разделительная линия скрыта */
+        padding-left: 0;
+        border-left: none; /* Убираем вертикальную разделительную черту десктопа */
+        border-top: 1px solid rgba(0, 0, 0, 0.1); /* Добавляем горизонтальную аккуратную линию */
+        padding-top: 2vh; /* Отступ от верхней разделительной линии */
+    }
+
+    /* Кнопки покупки улучшений */
+    .button1, .button2, .button3, .button4, .button5, .button6, 
+    .button7, .button8, .button9, .button10, .button11, .button12 {
+        width: 14vw; /* Увеличиваем кнопки, чтобы по ним было комфортно нажимать пальцем */
+        height: 14vw; /* Сохраняем форму круга */
+        margin: 1.5vh auto;
+    }
+
+    /* Заголовки над кнопками улучшений */
+    .buttons h1, .buttons1 h1, .buttons2 h1,
+    .upgrade-title {
+        font-size: clamp(14px, 4vw, 16px); /* Делаем текст читабельным на экранах телефонов */
+    }
+
+    /* Кнопка "Сохранить результат" */
+    input[type="submit"] {
+        width: 65vw; /* Кнопка становится широкой и удобной для нажатия на мобильных устройствах */
+        height: 5.5vh;
+        min-height: 40px;
+        font-size: 16px;
+        margin-top: 2vh;
+    }
+
+    /* Нижний блок публикации счета score_publish() */
+    .scrollable-box {
+        width: 90vw; /* Выравниваем ширину с главным игровым контейнером */
+        height: auto;
+        max-height: 40vh; /* Ограничиваем максимальную высоту со скроллом, чтобы не растягивать страницу вниз */
+        padding: 3vh 4vw;
+        margin-bottom: 0;
     }
 }
 
